@@ -3,7 +3,7 @@ import cloud from "@assets/imgs/cloud_white.png";
 import logored from "@assets/imgs/logo_3d_red.png";
 import logoblue from "@assets/imgs/logo_3d_blue.png";
 import videoBlue from "@assets/videos/file3.mp4";
-import videoRed from "@assets/videos/file4.mp4";
+// import videoRed from "@assets/videos/file4.mp4";
 ---
 <script>
   const change_mode = document.querySelector("#change-mode-video");
@@ -83,7 +83,7 @@ import videoRed from "@assets/videos/file4.mp4";
 
   <video
     id="video-blue"
-    src="https://videos.pexels.com/video-files/856429/856429-uhd_2560_1440_30fps.mp4"
+    src={videoBlue}
     class="hidden absolute top-0 left-0 w-full h-full object-cover z-0 opacity-75"
     muted
     loop
