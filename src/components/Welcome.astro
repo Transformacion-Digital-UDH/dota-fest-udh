@@ -1,9 +1,114 @@
 ---
-import cloud from "@assets/imgs/cloud.avif";
-import logo from "@assets/imgs/logo_dota.jpg";
+import cloud from "@assets/imgs/cloud_white.png";
+import logored from "@assets/imgs/logo_3d_red.png";
+import logoblue from "@assets/imgs/logo_3d_blue.png";
+import videoBlue from "@assets/videos/file3.mp4";
+import videoRed from "@assets/videos/file4.mp4";
 ---
+<script>
+  const change_mode = document.querySelector("#change-mode-video");
+  const video_red = document.querySelector("#video-red") as HTMLVideoElement;
+  const video_blue = document.querySelector("#video-blue") as HTMLVideoElement;
+  
+  const logo_red = document.querySelector("#logo-red");
+  const logo_blue = document.querySelector("#logo-blue");
 
-<div class="h-dvh bg-black text-white flex flex-col items-center justify-center gap-4">
-  <img src={logo.src} alt="DOTA FEST UDH Logo" class="w-52 h-52 rounded-full shadow-lg" />
-  Welcome to DOTA FEST UDH
+  const toggleVideos = () => {
+    const isRedHidden = video_red?.classList.contains("hidden");
+    
+    if (isRedHidden) {
+      // Mostrar video rojo y ocultar azul
+      video_red?.classList.remove("hidden");
+      video_blue?.classList.add("hidden");
+
+      logo_red?.classList.remove("hidden");
+      logo_blue?.classList.add("hidden");
+
+      // Reproducir video rojo y pausar azul
+      video_red?.play();
+      video_blue?.pause();
+    } else {
+      // Mostrar video azul y ocultar rojo
+      video_red?.classList.add("hidden");
+      video_blue?.classList.remove("hidden");
+
+      logo_blue?.classList.remove("hidden");
+      logo_red?.classList.add("hidden");
+
+      // Reproducir video azul y pausar rojo
+      video_blue?.play();
+      video_red?.pause();
+    }
+  };
+
+  change_mode?.addEventListener("click", toggleVideos);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // Iniciar con el video rojo visible
+    const clouds = document.querySelectorAll(".cloud");
+    clouds.forEach((cloud) => {
+      cloud.classList.add("animate-move-from-bottom");
+    });
+
+    setTimeout(() => {
+      clouds.forEach((cloud) => {
+        cloud.classList.remove("animate-move-from-bottom");
+        cloud.classList.add("animate-move-cloud");
+
+      });
+    }, 2000)
+  });
+</script>
+
+<div class="h-dvh bg-black text-white flex flex-col items-center justify-center gap-4 relative overflow-hidden font-aminute">
+
+  {/* Button change mode video */}
+  <div id="change-mode-video" class="absolute top-4 right-4 z-20 bg-white/20 p-2 rounded-full">
+    <button
+      class="bg-white text-black px-4 py-2 rounded-full shadow-lg hover:bg-gray-200 transition-colors cursor-pointer "
+    >
+      Cambiar
+    </button>
+  </div>
+
+  {/* Video de fondo */}
+  <video
+    id="video-red"
+    src="https://videos.pexels.com/video-files/2715412/2715412-uhd_2560_1440_30fps.mp4"
+    class="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-75"
+    autoplay
+    muted
+    loop
+  />
+
+  <video
+    id="video-blue"
+    src="https://videos.pexels.com/video-files/856429/856429-uhd_2560_1440_30fps.mp4"
+    class="hidden absolute top-0 left-0 w-full h-full object-cover z-0 opacity-75"
+    muted
+    loop
+  />
+
+  {/* Contenido encima del video */}
+  <img src={cloud.src} alt="cloud" class="absolute top-[72%] right-[25%] cloud grayscale opacity-40 z-10 w-96" />
+  <img src={cloud.src} alt="cloud" class="absolute top-[62%] right-1/2 cloud grayscale opacity-40 z-10 w-96" />
+  <img src={cloud.src} alt="cloud" class="absolute top-[62%] left-1/2 cloud grayscale opacity-40 z-10 w-96" />
+  <img src={cloud.src} alt="cloud" class="absolute top-[72%] left-[25%] cloud grayscale opacity-40 z-10 w-96" />
+  <img src={cloud.src} alt="cloud" class="absolute top-[65%] cloud grayscale z-10 w-96 opacity-40" />
+
+  {/* Logo and presentation */}
+  <div class="z-10 flex flex-col items-center gap-4">
+    <img 
+      id="logo-red"
+      src={logored.src} alt="DOTA FEST UDH Logo" class="size-72 animate-float animate-iteration-count-infinite animate-duration-[2000ms]" />
+
+    <img 
+      id="logo-blue"
+      src={logoblue.src} alt="DOTA FEST UDH Logo" class="size-72 animate-float animate-iteration-count-infinite animate-duration-[2000ms] hidden" />
+    
+    <div class="text-center">
+      <p class="uppercase text-2xl tracking-[0.3em] animate-fade-in-up animate-delay-100">torneo de dota 2</p>
+      <h1 class="uppercase text-[7rem] font-extrabold font-alifira tracking-wider animate-fade-in-up animate-delay-300">deache game</h1>
+    </div>
+  </div>
 </div>

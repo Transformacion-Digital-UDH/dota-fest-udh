@@ -1,1 +1,61 @@
 @import "tailwindcss";
+/* @import "tailwindcss-animated"; */
+@plugin "@midudev/tailwind-animations";
+
+@font-face {
+  font-family: 'Aminute';
+  src: url('/fonts/Aminute.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Agency';
+  src: url('/fonts/Agency.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Alifira';
+  src: url('/fonts/Alifira.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@theme {
+  --font-aminute: 'Aminute', sans-serif;
+  --font-agency: 'Agency', sans-serif;
+  --font-alifira: 'Alifira', sans-serif;
+
+  /* Animations */
+  --animate-move-cloud: move-cloud 3s ease-in-out infinite;
+  --animate-move-from-bottom: moveFromBottom 1.5s ease forwards;
+
+  @keyframes move-cloud {
+    0% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(2%, -1%);
+    }
+    50% {
+      transform: translate(0%, 1%);
+    }
+    75% {
+      transform: translate(-2%, -1%);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+
+  @keyframes moveFromBottom {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+}
