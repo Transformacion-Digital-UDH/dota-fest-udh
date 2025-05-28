@@ -17,8 +17,10 @@ jobs:
             cd htdocs/ltddota.sistemasudh.com
             git reset --hard HEAD
             git pull origin main
-            /home/ltddota/.nvm/versions/node/v22.16.0/bin/npm install
-            /home/ltddota/.nvm/versions/node/v22.16.0/bin/npm run build
+            node -v
+            npm -v
+            npm install
+            npx astro build
             /home/ltddota/.nvm/versions/node/v22.16.0/bin/pm2 stop ltddotaapp
             /home/ltddota/.nvm/versions/node/v22.16.0/bin/pm2 start ltddotaapp
             /home/ltddota/.nvm/versions/node/v22.16.0/bin/pm2 save
