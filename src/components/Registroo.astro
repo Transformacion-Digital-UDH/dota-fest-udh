@@ -1,0 +1,162 @@
+---
+// Importa las mismas fuentes de video que Welcome.astro
+import videoBlueSrcFromComponent from "@assets/videos/file3.mp4"; // Renombrado para evitar conflicto si se usa en la misma página
+const videoRedSrcFromComponent =
+    "https://videos.pexels.com/video-files/2715412/2715412-uhd_2560_1440_30fps.mp4";
+---
+
+<div
+    class="h-dvh bg-black text-white flex flex-col items-center justify-center relative overflow-hidden font-aminute"
+>
+    {/* Videos de fondo */}
+    <video
+        id="registro-video-red"
+        src={videoRedSrcFromComponent}
+        class="hidden absolute top-0 left-0 w-full h-full object-cover z-0 opacity-75"
+        autoplay
+        muted
+        loop></video>
+    <video
+        id="registro-video-blue"
+        src={videoBlueSrcFromComponent}
+        class="hidden absolute top-0 left-0 w-full h-full object-cover z-0 opacity-75"
+        autoplay
+        muted
+        loop></video>
+
+    {/* Contenido del formulario de registro */}
+    <div class="relative z-10 flex flex-col items-center text-center p-4">
+        <h1 class="text-4xl font-bold mb-8">Registro de Equipos</h1>
+
+        {/* Aquí puedes empezar a construir tu formulario. Ejemplo: */}
+        <form
+            id="formRegistroEquipo"
+            class="w-full max-w-lg bg-white/10 p-8 rounded-lg shadow-xl"
+        >
+            <div class="mb-4">
+                <label for="nombreEquipo" class="block text-left text-lg mb-2"
+                    >Nombre del Equipo:</label
+                >
+                <input
+                    type="text"
+                    id="nombreEquipo"
+                    name="nombreEquipo"
+                    class="w-full p-3 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
+                    required
+                />
+            </div>
+
+            <h2 class="text-2xl mt-6 mb-4">Integrantes del Equipo</h2>
+            <p class="mb-4 text-sm">
+                Escribe el nombre de tus compañeros de equipo.
+            </p>
+
+            {
+                /* Ejemplo para un integrante, puedes generar 5 de estos o dinámicamente */
+            }
+            <div class="mb-4">
+                <label for="integrante1" class="block text-left text-sm mb-1"
+                    >Integrante 1 (Capitán):</label
+                >
+                <input
+                    type="text"
+                    id="integrante1"
+                    name="integrante1"
+                    class="w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
+                    required
+                />
+            </div>
+            <div class="mb-4">
+                <label for="integrante2" class="block text-left text-sm mb-1"
+                    >Integrante 2:</label
+                >
+                <input
+                    type="text"
+                    id="integrante2"
+                    name="integrante2"
+                    class="w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
+                    required
+                />
+            </div>
+            {/* ... Repetir para más integrantes ... */}
+
+            <button
+                type="submit"
+                class="mt-8 w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg text-xl transition-colors duration-300"
+            >
+                Registrar Equipo
+            </button>
+        </form>
+        <div id="mensajeRespuestaRegistro" class="mt-4"></div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const video_red_registro = document.querySelector(
+            "#registro-video-red",
+        ) as HTMLVideoElement;
+        const video_blue_registro = document.querySelector(
+            "#registro-video-blue",
+        ) as HTMLVideoElement;
+        const formRegistro = document.getElementById("formRegistroEquipo");
+        const mensajeRespuesta = document.getElementById(
+            "mensajeRespuestaRegistro",
+        );
+
+        // Usar la misma clave que en Welcome.astro
+        const LOCAL_STORAGE_KEY_REGISTRO = "activeVideoTheme";
+        const VIDEO_RED_ID_REGISTRO = "video-red"; // Asegúrate que estos valores coincidan
+        const VIDEO_BLUE_ID_REGISTRO = "video-blue"; // con los guardados desde Welcome.astro
+
+        const getActiveVideoPreference = () => {
+            try {
+                return localStorage.getItem(LOCAL_STORAGE_KEY_REGISTRO); // <--- CORREGIDO
+            } catch (e) {
+                console.error("Error reading from localStorage:", e);
+                return VIDEO_RED_ID_REGISTRO; // Default a rojo si hay error
+            }
+        };
+
+        const preferredVideoId =
+            getActiveVideoPreference() || VIDEO_RED_ID_REGISTRO;
+
+        if (preferredVideoId === VIDEO_BLUE_ID_REGISTRO) {
+            video_blue_registro?.classList.remove("hidden");
+            video_red_registro?.classList.add("hidden");
+            video_blue_registro
+                ?.play()
+                .catch((e) =>
+                    console.warn("Blue video (registro) play interrupted", e),
+                );
+            video_red_registro?.pause();
+        } else {
+            // 'video-red' o cualquier otro valor por defecto
+            video_red_registro?.classList.remove("hidden");
+            video_blue_registro?.classList.add("hidden");
+            video_red_registro
+                ?.play()
+                .catch((e) =>
+                    console.warn("Red video (registro) play interrupted", e),
+                );
+            video_blue_registro?.pause();
+        }
+
+        // Lógica para el envío del formulario de registro de equipo (similar a la anterior de usuario)
+        formRegistro?.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(formRegistro as HTMLFormElement);
+            const data = Object.fromEntries(formData.entries());
+
+            // Aquí enviarías los datos a tu endpoint de API para registrar equipos
+            // Por ejemplo: /api/registrar-equipo
+            console.log("Datos del equipo a registrar:", data);
+
+            // Simulación de respuesta
+            setTimeout(() => {
+                (formRegistro as HTMLFormElement).reset();
+            }, 1000);
+        });
+    });
+</script>
