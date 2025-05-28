@@ -25,15 +25,16 @@ const videoRedSrcFromComponent =
         loop></video>
 
     {/* Contenido del formulario de registro */}
-    <div class="relative z-10 flex flex-col items-center text-center p-4">
+    <div
+        class="relative z-10 flex flex-col items-center text-center p-4 w-full"
+    >
         <h1 class="text-4xl font-bold mb-8">Registro de Equipos</h1>
 
-        {/* Aquí puedes empezar a construir tu formulario. Ejemplo: */}
         <form
             id="formRegistroEquipo"
-            class="w-full max-w-lg bg-white/10 p-8 rounded-lg shadow-xl"
+            class="w-full max-w-2xl bg-white/10 p-8 rounded-lg shadow-xl"
         >
-            <div class="mb-4">
+            <div class="mb-6">
                 <label for="nombreEquipo" class="block text-left text-lg mb-2"
                     >Nombre del Equipo:</label
                 >
@@ -46,43 +47,144 @@ const videoRedSrcFromComponent =
                 />
             </div>
 
-            <h2 class="text-2xl mt-6 mb-4">Integrantes del Equipo</h2>
-            <p class="mb-4 text-sm">
-                Escribe el nombre de tus compañeros de equipo.
+            <h2 class="text-2xl mt-8 mb-4">Integrantes del Equipo</h2>
+            <p class="mb-6 text-sm">
+                Escribe el código de estudiante de tus compañeros de equipo. Los
+                datos se cargarán automáticamente.
             </p>
 
-            {
-                /* Ejemplo para un integrante, puedes generar 5 de estos o dinámicamente */
-            }
-            <div class="mb-4">
-                <label for="integrante1" class="block text-left text-sm mb-1"
-                    >Integrante 1 (Capitán):</label
+            {/* --- Integrante 1 (Capitán) --- */}
+            <div class="mb-6 p-4 border border-white/20 rounded-md">
+                <label
+                    for="codigoIntegrante1"
+                    class="block text-left text-lg mb-2"
+                    >Código Estudiante (Capitán):</label
                 >
+                <div class="flex items-center gap-2">
+                    <input
+                        type="text"
+                        id="codigoIntegrante1"
+                        name="codigoIntegrante1"
+                        class="integrante-codigo w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
+                        required
+                        data-integrante-index="1"
+                    />
+                    <button
+                        type="button"
+                        class="verificar-codigo-btn bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-sm"
+                        data-integrante-index="1"
+                    >
+                        Verificar
+                    </button>
+                </div>
+                <div
+                    id="datosIntegrante1"
+                    class="text-left mt-2 text-sm text-gray-300"
+                >
+                    {/* Aquí se mostrarán los datos del estudiante */}
+                </div>
+                {
+                    /* Campos ocultos para enviar los datos recuperados si es necesario */
+                }
                 <input
-                    type="text"
-                    id="integrante1"
-                    name="integrante1"
-                    class="w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
-                    required
+                    type="hidden"
+                    name="nombreIntegrante1"
+                    id="nombreIntegrante1"
+                />
+                <input
+                    type="hidden"
+                    name="programaIntegrante1"
+                    id="programaIntegrante1"
                 />
             </div>
-            <div class="mb-4">
-                <label for="integrante2" class="block text-left text-sm mb-1"
-                    >Integrante 2:</label
+
+            {/* --- Integrante 2 --- */}
+            <div class="mb-6 p-4 border border-white/20 rounded-md">
+                <label
+                    for="codigoIntegrante2"
+                    class="block text-left text-lg mb-2"
+                    >Código Estudiante (Integrante 2):</label
                 >
+                <div class="flex items-center gap-2">
+                    <input
+                        type="text"
+                        id="codigoIntegrante2"
+                        name="codigoIntegrante2"
+                        class="integrante-codigo w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
+                        required
+                        data-integrante-index="2"
+                    />
+                    <button
+                        type="button"
+                        class="verificar-codigo-btn bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-sm"
+                        data-integrante-index="2"
+                    >
+                        Verificar
+                    </button>
+                </div>
+                <div
+                    id="datosIntegrante2"
+                    class="text-left mt-2 text-sm text-gray-300"
+                >
+                    {/* Aquí se mostrarán los datos del estudiante */}
+                </div>
                 <input
-                    type="text"
-                    id="integrante2"
-                    name="integrante2"
-                    class="w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
-                    required
+                    type="hidden"
+                    name="nombreIntegrante2"
+                    id="nombreIntegrante2"
+                />
+                <input
+                    type="hidden"
+                    name="programaIntegrante2"
+                    id="programaIntegrante2"
                 />
             </div>
-            {/* ... Repetir para más integrantes ... */}
+
+            {/* --- Integrante 3 --- */}
+            <div class="mb-6 p-4 border border-white/20 rounded-md">
+                <label
+                    for="codigoIntegrante3"
+                    class="block text-left text-lg mb-2"
+                    >Código Estudiante (Integrante 3):</label
+                >
+                <div class="flex items-center gap-2">
+                    <input
+                        type="text"
+                        id="codigoIntegrante3"
+                        name="codigoIntegrante3"
+                        class="integrante-codigo w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
+                        required
+                        data-integrante-index="3"
+                    />
+                    <button
+                        type="button"
+                        class="verificar-codigo-btn bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-sm"
+                        data-integrante-index="3"
+                    >
+                        Verificar
+                    </button>
+                </div>
+                <div
+                    id="datosIntegrante3"
+                    class="text-left mt-2 text-sm text-gray-300"
+                >
+                    {/* Aquí se mostrarán los datos del estudiante */}
+                </div>
+                <input
+                    type="hidden"
+                    name="nombreIntegrante3"
+                    id="nombreIntegrante3"
+                />
+                <input
+                    type="hidden"
+                    name="programaIntegrante3"
+                    id="programaIntegrante3"
+                />
+            </div>
 
             <button
                 type="submit"
-                class="mt-8 w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg text-xl transition-colors duration-300"
+                class="mt-8 w-full bg-red-600 hover:bg-red-800 text-white font-bold py-3 px-6 rounded-lg text-xl transition-colors duration-300"
             >
                 Registrar Equipo
             </button>
@@ -142,21 +244,176 @@ const videoRedSrcFromComponent =
             video_blue_registro?.pause();
         }
 
+        // Lógica para el formulario de registro de equipo
+
+        const verificarCodigoBtns = document.querySelectorAll(
+            ".verificar-codigo-btn",
+        );
+
+        async function fetchEstudianteData(
+            codigoEstudiante: string,
+            integranteIndex: string,
+        ) {
+            const datosDiv = document.getElementById(
+                `datosIntegrante${integranteIndex}`,
+            );
+            const nombreInput = document.getElementById(
+                `nombreIntegrante${integranteIndex}`,
+            ) as HTMLInputElement;
+            const programaInput = document.getElementById(
+                `programaIntegrante${integranteIndex}`,
+            ) as HTMLInputElement;
+
+            if (!datosDiv || !nombreInput || !programaInput) return;
+
+            datosDiv.innerHTML =
+                '<p class="text-yellow-400">Verificando código...</p>';
+            nombreInput.value = ""; // Limpiar campos ocultos
+            programaInput.value = "";
+
+            try {
+                // Llamada al endpoint proxy de tu backend de Astro
+                const response = await fetch("/api/verificar-estudiante", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        codigoEstudiante: codigoEstudiante,
+                    }),
+                });
+
+                if (!response.ok) {
+                    // Intenta leer el mensaje de error del proxy si está disponible
+                    let errorData;
+                    try {
+                        errorData = await response.json();
+                    } catch (e) {
+                        /* no hacer nada si no es json */
+                    }
+                    throw new Error(
+                        errorData?.message ||
+                            `Error de red: ${response.status}`,
+                    );
+                }
+
+                const result = await response.json(); // { success: boolean, data?: any, message?: string }
+
+                if (result.success && result.data && result.data.length > 0) {
+                    const estudiante = result.data[0];
+                    const nombreCompleto =
+                        `${estudiante.stu_nombres || ""} ${estudiante.stu_apellido_paterno || ""} ${estudiante.stu_apellido_materno || ""}`.trim();
+
+                    datosDiv.innerHTML = `
+                        <p><strong>Nombre:</strong> ${nombreCompleto}</p>
+                        <p><strong>Programa:</strong> ${estudiante.stu_programa || "No disponible"}</p>
+                        <p class="text-green-400">✓ Datos cargados.</p>
+                    `;
+                    nombreInput.value = nombreCompleto;
+                    programaInput.value = estudiante.stu_programa || "";
+                } else {
+                    datosDiv.innerHTML = `<p class="text-red-400">${result.message || "Código de estudiante no encontrado o sin datos."}</p>`;
+                }
+            } catch (error: any) {
+                console.error("Error fetching student data via proxy:", error);
+                datosDiv.innerHTML = `<p class="text-red-400">Error al verificar el código: ${error.message || "Intenta de nuevo."} (Ver consola para detalles)</p>`;
+            }
+        }
+
+        verificarCodigoBtns.forEach((button) => {
+            button.addEventListener("click", (event) => {
+                const targetButton = event.target as HTMLButtonElement;
+                const integranteIndex = targetButton.dataset.integranteIndex;
+                const codigoInput = document.getElementById(
+                    `codigoIntegrante${integranteIndex}`,
+                ) as HTMLInputElement;
+                if (codigoInput && integranteIndex) {
+                    const codigo = codigoInput.value.trim();
+                    if (codigo) {
+                        fetchEstudianteData(codigo, integranteIndex);
+                    } else {
+                        const datosDiv = document.getElementById(
+                            `datosIntegrante${integranteIndex}`,
+                        );
+                        if (datosDiv)
+                            datosDiv.innerHTML =
+                                '<p class="text-yellow-400">Por favor, ingresa un código.</p>';
+                    }
+                }
+            });
+        });
+
+        // Event listener para los inputs de código (opcional, para verificar al perder el foco)
+        document.querySelectorAll(".integrante-codigo").forEach((input) => {
+            input.addEventListener("blur", (event) => {
+                const targetInput = event.target as HTMLInputElement;
+                const integranteIndex = targetInput.dataset.integranteIndex;
+                const codigo = targetInput.value.trim();
+                if (codigo && integranteIndex) {
+                    // Podrías llamar a fetchEstudianteData aquí también si prefieres
+                    // fetchEstudianteData(codigo, integranteIndex);
+                    // O simplemente dejar que el usuario use el botón "Verificar"
+                }
+            });
+        });
+
         // Lógica para el envío del formulario de registro de equipo (similar a la anterior de usuario)
         formRegistro?.addEventListener("submit", async (event) => {
             event.preventDefault();
+            if (mensajeRespuesta) {
+                mensajeRespuesta.textContent = "Registrando equipo...";
+                mensajeRespuesta.className = "mt-4 text-yellow-400";
+            }
 
             const formData = new FormData(formRegistro as HTMLFormElement);
             const data = Object.fromEntries(formData.entries());
 
-            // Aquí enviarías los datos a tu endpoint de API para registrar equipos
-            // Por ejemplo: /api/registrar-equipo
-            console.log("Datos del equipo a registrar:", data);
+            // console.log("Datos del equipo a registrar:", data); // Para depuración
 
-            // Simulación de respuesta
-            setTimeout(() => {
-                (formRegistro as HTMLFormElement).reset();
-            }, 1000);
+            try {
+                const response = await fetch("/api/registrar-equipo", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    if (mensajeRespuesta) {
+                        mensajeRespuesta.textContent =
+                            result.message ||
+                            "¡Equipo registrado exitosamente!";
+                        mensajeRespuesta.className = "mt-4 text-green-400";
+                    }
+                    (formRegistro as HTMLFormElement).reset();
+                    // Limpiar los divs de datos de integrantes
+                    document
+                        .querySelectorAll('[id^="datosIntegrante"]')
+                        .forEach((div) => {
+                            if (div instanceof HTMLElement) div.innerHTML = "";
+                        });
+                } else {
+                    if (mensajeRespuesta) {
+                        mensajeRespuesta.textContent =
+                            result.message ||
+                            "Error en el registro del equipo.";
+                        mensajeRespuesta.className = "mt-4 text-red-400";
+                    }
+                }
+            } catch (error) {
+                console.error(
+                    "Error al enviar el formulario de registro de equipo:",
+                    error,
+                );
+                if (mensajeRespuesta) {
+                    mensajeRespuesta.textContent =
+                        "Ocurrió un error al conectar con el servidor para registrar el equipo.";
+                    mensajeRespuesta.className = "mt-4 text-red-400";
+                }
+            }
         });
     });
 </script>
