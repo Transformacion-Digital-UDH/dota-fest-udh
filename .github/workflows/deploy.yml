@@ -19,7 +19,7 @@ jobs:
             git pull origin main
             npm install
             npm run build
-            pm2 stop ltddotaapp
-            pm2 start ltddotaapp
-            pm2 save
+            /home/ltddota/.nvm/versions/node/v22.16.0/bin/pm2 stop ltddotaapp
+            /home/ltddota/.nvm/versions/node/v22.16.0/bin/pm2 start ltddotaapp
+            /home/ltddota/.nvm/versions/node/v22.16.0/bin/pm2 save
             git log --oneline
