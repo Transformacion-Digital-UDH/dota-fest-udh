@@ -14,13 +14,16 @@ jobs:
           username: ${{ secrets.PROD_SSH_USER }}
           key: ${{ secrets.PROD_SSH_KEY }}
           script: |
+            export PATH="$HOME/.nvm/versions/node/v22.16.0/bin:$PATH"
+
+            node -v
+            npm -v
+            
             cd htdocs/ltddota.sistemasudh.com
             git reset --hard HEAD
             git pull origin main
-            node -v
-            npm -v
             npm install
-            npx astro build
+            npm run build
             /home/ltddota/.nvm/versions/node/v22.16.0/bin/pm2 stop ltddotaapp
             /home/ltddota/.nvm/versions/node/v22.16.0/bin/pm2 start ltddotaapp
             /home/ltddota/.nvm/versions/node/v22.16.0/bin/pm2 save
