@@ -1,0 +1,25 @@
+name: Desplegar a producción
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ejecutar script de despliegue dota2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.PROD_SSH_HOST }}
+          username: ${{ secrets.PROD_SSH_USER }}
+          key: ${{ secrets.PROD_SSH_KEY }}
+          script: |
+            cd htdocs/ltddota.sistemasudh.com
+            git reset --hard HEAD
+            git pull origin main
+            npm install
+            npm run build
+            pm2 stop ltddotaapp
+            pm2 start ltddotaapp
+            pm2 save
+            git log --oneline
