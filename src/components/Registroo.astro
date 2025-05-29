@@ -26,172 +26,309 @@ const videoRedSrcFromComponent =
 
     {/* Contenido del formulario de registro */}
     <div
-        class="relative z-10 flex flex-col items-center text-center p-4 w-full"
+        class="relative z-10 flex flex-col items-center text-center p-4 w-full max-w-2xl max-h-[90vh]"
     >
-        <h1 class="text-4xl font-bold mb-8">Registro de Equipos</h1>
+        <h1 class="text-4xl font-bold mb-4 md:mb-8 font-alifira">
+            {/* Reducir margen inferior en móviles */}
+            Registro de Equipos
+        </h1>
 
+        {/* El formulario ahora es un flex container en columna */}
         <form
             id="formRegistroEquipo"
-            class="w-full max-w-2xl bg-white/10 p-8 rounded-lg shadow-xl"
+            class="w-full max-w-2xl bg-white/10 p-6 md:p-8 rounded-lg shadow-xl flex flex-col max-h-[calc(80vh-55px)]"
         >
-            <div class="mb-6">
-                <label for="nombreEquipo" class="block text-left text-lg mb-2"
-                    >Nombre del Equipo:</label
-                >
-                <input
-                    type="text"
-                    id="nombreEquipo"
-                    name="nombreEquipo"
-                    class="w-full p-3 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
-                    required
-                />
-            </div>
-
-            <h2 class="text-2xl mt-8 mb-4">Integrantes del Equipo</h2>
-            <p class="mb-6 text-sm">
-                Escribe el código de estudiante de tus compañeros de equipo. Los
-                datos se cargarán automáticamente.
-            </p>
-
-            {/* --- Integrante 1 (Capitán) --- */}
-            <div class="mb-6 p-4 border border-white/20 rounded-md">
-                <label
-                    for="codigoIntegrante1"
-                    class="block text-left text-lg mb-2"
-                    >Código Estudiante (Capitán):</label
-                >
-                <div class="flex items-center gap-2">
-                    <input
-                        type="text"
-                        id="codigoIntegrante1"
-                        name="codigoIntegrante1"
-                        class="integrante-codigo w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
-                        required
-                        data-integrante-index="1"
-                    />
-                    <button
-                        type="button"
-                        class="verificar-codigo-btn bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-sm"
-                        data-integrante-index="1"
-                    >
-                        Verificar
-                    </button>
-                </div>
-                <div
-                    id="datosIntegrante1"
-                    class="text-left mt-2 text-sm text-gray-300"
-                >
-                    {/* Aquí se mostrarán los datos del estudiante */}
-                </div>
-                {
-                    /* Campos ocultos para enviar los datos recuperados si es necesario */
-                }
-                <input
-                    type="hidden"
-                    name="nombreIntegrante1"
-                    id="nombreIntegrante1"
-                />
-                <input
-                    type="hidden"
-                    name="programaIntegrante1"
-                    id="programaIntegrante1"
-                />
-            </div>
-
-            {/* --- Integrante 2 --- */}
-            <div class="mb-6 p-4 border border-white/20 rounded-md">
-                <label
-                    for="codigoIntegrante2"
-                    class="block text-left text-lg mb-2"
-                    >Código Estudiante (Integrante 2):</label
-                >
-                <div class="flex items-center gap-2">
-                    <input
-                        type="text"
-                        id="codigoIntegrante2"
-                        name="codigoIntegrante2"
-                        class="integrante-codigo w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
-                        required
-                        data-integrante-index="2"
-                    />
-                    <button
-                        type="button"
-                        class="verificar-codigo-btn bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-sm"
-                        data-integrante-index="2"
-                    >
-                        Verificar
-                    </button>
-                </div>
-                <div
-                    id="datosIntegrante2"
-                    class="text-left mt-2 text-sm text-gray-300"
-                >
-                    {/* Aquí se mostrarán los datos del estudiante */}
-                </div>
-                <input
-                    type="hidden"
-                    name="nombreIntegrante2"
-                    id="nombreIntegrante2"
-                />
-                <input
-                    type="hidden"
-                    name="programaIntegrante2"
-                    id="programaIntegrante2"
-                />
-            </div>
-
-            {/* --- Integrante 3 --- */}
-            <div class="mb-6 p-4 border border-white/20 rounded-md">
-                <label
-                    for="codigoIntegrante3"
-                    class="block text-left text-lg mb-2"
-                    >Código Estudiante (Integrante 3):</label
-                >
-                <div class="flex items-center gap-2">
-                    <input
-                        type="text"
-                        id="codigoIntegrante3"
-                        name="codigoIntegrante3"
-                        class="integrante-codigo w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
-                        required
-                        data-integrante-index="3"
-                    />
-                    <button
-                        type="button"
-                        class="verificar-codigo-btn bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-sm"
-                        data-integrante-index="3"
-                    >
-                        Verificar
-                    </button>
-                </div>
-                <div
-                    id="datosIntegrante3"
-                    class="text-left mt-2 text-sm text-gray-300"
-                >
-                    {/* Aquí se mostrarán los datos del estudiante */}
-                </div>
-                <input
-                    type="hidden"
-                    name="nombreIntegrante3"
-                    id="nombreIntegrante3"
-                />
-                <input
-                    type="hidden"
-                    name="programaIntegrante3"
-                    id="programaIntegrante3"
-                />
-            </div>
-
-            <button
-                type="submit"
-                class="mt-8 w-full bg-red-600 hover:bg-red-800 text-white font-bold py-3 px-6 rounded-lg text-xl transition-colors duration-300"
+            {/* Contenedor para los campos que tendrán scroll */}
+            <div
+                class="flex-grow overflow-y-auto pr-2 space-y-6 custom-scrollbar-container"
             >
-                Registrar Equipo
-            </button>
+                {/* pr-2 para espacio del scrollbar si es visible */}
+                {/* Nombre del Equipo */}
+                <div>
+                    {
+                        /* Envuelve cada sección principal en un div si no lo está ya */
+                    }
+                    <label
+                        for="nombreEquipo"
+                        class="block text-left text-lg mb-2"
+                        >Nombre del Equipo:</label
+                    >
+                    <input
+                        type="text"
+                        id="nombreEquipo"
+                        name="nombreEquipo"
+                        class="w-full p-3 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
+                        required
+                    />
+                </div>
+
+                <h2 class="text-2xl mt-6 mb-2">Integrantes del Equipo</h2>
+                {/* Ajustar márgenes */}
+                <p class="mb-4 text-sm">
+                    {/* Ajustar márgenes */}
+                    Escribe el código de estudiante de tus compañeros de equipo.
+                    Los datos se cargarán automáticamente.
+                </p>
+
+                {/* --- Integrante 1 (Capitán) --- */}
+                <div class="p-4 border border-white/20 rounded-md">
+                    <label
+                        for="codigoIntegrante1"
+                        class="block text-left text-lg mb-2"
+                        >Código Estudiante (Capitán):</label
+                    >
+                    <div class="flex items-center gap-2">
+                        <input
+                            type="text"
+                            id="codigoIntegrante1"
+                            name="codigoIntegrante1"
+                            class="integrante-codigo w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
+                            required
+                            data-integrante-index="1"
+                        />
+                        <button
+                            type="button"
+                            class="verificar-codigo-btn bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-sm flex-shrink-0"
+                            data-integrante-index="1"
+                        >
+                            Verificar
+                        </button>
+                    </div>
+                    <div
+                        id="datosIntegrante1"
+                        class="text-left mt-2 text-sm text-gray-300 min-h-[40px]"
+                    >
+                        {/* Aquí se mostrarán los datos del estudiante */}
+                    </div>
+                    <input
+                        type="hidden"
+                        name="nombreIntegrante1"
+                        id="nombreIntegrante1"
+                    />
+                    <input
+                        type="hidden"
+                        name="programaIntegrante1"
+                        id="programaIntegrante1"
+                    />
+                </div>
+
+                {/* --- Integrante 2 --- */}
+                <div class="p-4 border border-white/20 rounded-md">
+                    <label
+                        for="codigoIntegrante2"
+                        class="block text-left text-lg mb-2"
+                        >Código Estudiante (Integrante 2):</label
+                    >
+                    <div class="flex items-center gap-2">
+                        <input
+                            type="text"
+                            id="codigoIntegrante2"
+                            name="codigoIntegrante2"
+                            class="integrante-codigo w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
+                            data-integrante-index="2"
+                        />
+                        <button
+                            type="button"
+                            class="verificar-codigo-btn bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-sm flex-shrink-0"
+                            data-integrante-index="2"
+                        >
+                            Verificar
+                        </button>
+                    </div>
+                    <div
+                        id="datosIntegrante2"
+                        class="text-left mt-2 text-sm text-gray-300 min-h-[40px]"
+                    >
+                    </div>
+                    <input
+                        type="hidden"
+                        name="nombreIntegrante2"
+                        id="nombreIntegrante2"
+                    />
+                    <input
+                        type="hidden"
+                        name="programaIntegrante2"
+                        id="programaIntegrante2"
+                    />
+                </div>
+
+                {/* --- Integrante 3 --- */}
+                <div class="p-4 border border-white/20 rounded-md">
+                    <label
+                        for="codigoIntegrante3"
+                        class="block text-left text-lg mb-2"
+                        >Código Estudiante (Integrante 3):</label
+                    >
+                    <div class="flex items-center gap-2">
+                        <input
+                            type="text"
+                            id="codigoIntegrante3"
+                            name="codigoIntegrante3"
+                            class="integrante-codigo w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
+                            data-integrante-index="3"
+                        />
+                        <button
+                            type="button"
+                            class="verificar-codigo-btn bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-sm flex-shrink-0"
+                            data-integrante-index="3"
+                        >
+                            Verificar
+                        </button>
+                    </div>
+                    <div
+                        id="datosIntegrante3"
+                        class="text-left mt-2 text-sm text-gray-300 min-h-[40px]"
+                    >
+                    </div>
+                    <input
+                        type="hidden"
+                        name="nombreIntegrante3"
+                        id="nombreIntegrante3"
+                    />
+                    <input
+                        type="hidden"
+                        name="programaIntegrante3"
+                        id="programaIntegrante3"
+                    />
+                </div>
+
+                {/* --- Integrante 4 --- */}
+                <div class="p-4 border border-white/20 rounded-md">
+                    <label
+                        for="codigoIntegrante4"
+                        class="block text-left text-lg mb-2"
+                        >Código Estudiante (Integrante 4):</label
+                    >
+                    <div class="flex items-center gap-2">
+                        <input
+                            type="text"
+                            id="codigoIntegrante4"
+                            name="codigoIntegrante4"
+                            class="integrante-codigo w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
+                            data-integrante-index="4"
+                        />
+                        <button
+                            type="button"
+                            class="verificar-codigo-btn bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-sm flex-shrink-0"
+                            data-integrante-index="4"
+                        >
+                            Verificar
+                        </button>
+                    </div>
+                    <div
+                        id="datosIntegrante4"
+                        class="text-left mt-2 text-sm text-gray-300 min-h-[40px]"
+                    >
+                    </div>
+                    <input
+                        type="hidden"
+                        name="nombreIntegrante4"
+                        id="nombreIntegrante4"
+                    />
+                    <input
+                        type="hidden"
+                        name="programaIntegrante4"
+                        id="programaIntegrante4"
+                    />
+                </div>
+
+                {/* --- Integrante 5 --- */}
+                <div class="p-4 border border-white/20 rounded-md">
+                    <label
+                        for="codigoIntegrante5"
+                        class="block text-left text-lg mb-2"
+                        >Código Estudiante (Integrante 5):</label
+                    >
+                    <div class="flex items-center gap-2">
+                        <input
+                            type="text"
+                            id="codigoIntegrante5"
+                            name="codigoIntegrante5"
+                            class="integrante-codigo w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
+                            data-integrante-index="5"
+                        />
+                        <button
+                            type="button"
+                            class="verificar-codigo-btn bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-sm flex-shrink-0"
+                            data-integrante-index="5"
+                        >
+                            Verificar
+                        </button>
+                    </div>
+                    <div
+                        id="datosIntegrante5"
+                        class="text-left mt-2 text-sm text-gray-300 min-h-[40px]"
+                    >
+                    </div>
+                    <input
+                        type="hidden"
+                        name="nombreIntegrante5"
+                        id="nombreIntegrante5"
+                    />
+                    <input
+                        type="hidden"
+                        name="programaIntegrante5"
+                        id="programaIntegrante5"
+                    />
+                </div>
+            </div>
+
+            <div class="mt-auto pt-8">
+                <button
+                    type="submit"
+                    class="w-full bg-red-600 hover:bg-red-800 text-white font-bold py-3 px-6 rounded-lg text-xl transition-colors duration-300"
+                >
+                    Registrar Equipo
+                </button>
+            </div>
         </form>
-        <div id="mensajeRespuestaRegistro" class="mt-4"></div>
+        <div id="mensajeRespuestaRegistro" class="mt-4 text-sm md:text-base">
+        </div>
     </div>
 </div>
+
+<style>
+    /* Estilos para el scrollbar personalizado */
+    /* Funciona en navegadores WebKit/Blink (Chrome, Edge, Safari, Opera) */
+    .custom-scrollbar-container::-webkit-scrollbar {
+        width: 8px; /* Ancho del scrollbar */
+    }
+
+    .custom-scrollbar-container::-webkit-scrollbar-track {
+        background: rgba(
+            255,
+            255,
+            255,
+            0.1
+        ); /* Color del "riel" o fondo del scrollbar */
+        border-radius: 10px;
+    }
+
+    .custom-scrollbar-container::-webkit-scrollbar-thumb {
+        background: rgba(
+            220,
+            38,
+            38,
+            0.7
+        ); /* Color del "mango" del scrollbar (rojo semitransparente) */
+        border-radius: 10px;
+    }
+
+    .custom-scrollbar-container::-webkit-scrollbar-thumb:hover {
+        background: rgba(
+            185,
+            28,
+            28,
+            0.9
+        ); /* Color del "mango" al pasar el ratón (rojo más opaco) */
+    }
+
+    /* Para Firefox (más limitado, solo color y ancho) */
+    .custom-scrollbar-container {
+        scrollbar-width: thin; /* Puede ser 'auto', 'thin', o 'none' */
+        scrollbar-color: rgba(220, 38, 38, 0.7) rgba(255, 255, 255, 0.1); /* color del thumb y color del track */
+    }
+</style>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {

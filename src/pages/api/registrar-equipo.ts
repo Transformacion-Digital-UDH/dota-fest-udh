@@ -104,10 +104,7 @@ export const POST: APIRoute = async ({ request }) => {
             },
         });
 
-        // Convertir lastInsertRowid a String o Number
         const equipoId = result.lastInsertRowid ? String(result.lastInsertRowid) : null;
-        // o si estás seguro que no excederá Number.MAX_SAFE_INTEGER:
-        // const equipoId = result.lastInsertRowid ? Number(result.lastInsertRowid) : null;
 
 
         return new Response(
