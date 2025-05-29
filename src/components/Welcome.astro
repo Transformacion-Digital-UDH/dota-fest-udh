@@ -133,6 +133,7 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
     id="video-red"
     src={videoRed}
     class="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-75"
+    style="mask-image: linear-gradient(to bottom, black 80%, transparent);"
     autoplay
     muted
     loop></video>
@@ -140,6 +141,7 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
   <video
     id="video-blue"
     src={videoBlue}
+    style="mask-image: linear-gradient(to bottom, black 80%, transparent);"
     class="hidden absolute top-0 left-0 w-full h-full object-cover z-0 opacity-75"
     muted
     loop></video>
