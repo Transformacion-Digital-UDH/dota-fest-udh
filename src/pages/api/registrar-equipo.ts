@@ -59,11 +59,90 @@ export const POST: APIRoute = async ({ request }) => {
                 { status: 400, headers: { "Content-Type": "application/json" } }
             );
         }
-        if (!codigoIntegrante1 || !nombreIntegrante1) {
+
+        // Validación para cada integrante
+        const integrantes = [
+            { codigo: codigoIntegrante1, nombre: nombreIntegrante1, programa: programaIntegrante1, numero: 1 },
+            { codigo: codigoIntegrante2, nombre: nombreIntegrante2, programa: programaIntegrante2, numero: 2 },
+            { codigo: codigoIntegrante3, nombre: nombreIntegrante3, programa: programaIntegrante3, numero: 3 },
+            { codigo: codigoIntegrante4, nombre: nombreIntegrante4, programa: programaIntegrante4, numero: 4 },
+            { codigo: codigoIntegrante5, nombre: nombreIntegrante5, programa: programaIntegrante5, numero: 5 },
+        ];
+
+        const nombresProgramas = new Set<string>();
+        const codigosParaValidar = [];
+
+        for (const integrante of integrantes) {
+            const codigoTrimmed = integrante.codigo ? String(integrante.codigo).trim() : "";
+            const nombreTrimmed = integrante.nombre ? String(integrante.nombre).trim() : "";
+            const programaTrimmed = integrante.programa ? String(integrante.programa).trim() : "";
+
+            if (!codigoTrimmed) {
+                return new Response(
+                    JSON.stringify({ success: false, message: `El código del integrante ${integrante.numero} es requerido.` }),
+                    { status: 400, headers: { "Content-Type": "application/json" } }
+                );
+            }
+
+            codigosParaValidar.push(codigoTrimmed);
+
+            if (!nombreTrimmed) {
+                return new Response(
+                    JSON.stringify({ success: false, message: `El nombre del integrante ${integrante.numero} es requerido (asegúrate de verificar el código).` }),
+                    { status: 400, headers: { "Content-Type": "application/json" } }
+                );
+            }
+            if (!programaTrimmed) {
+                return new Response(
+                    JSON.stringify({ success: false, message: `El programa del integrante ${integrante.numero} es requerido (asegúrate de verificar el código).` }),
+                    { status: 400, headers: { "Content-Type": "application/json" } }
+                );
+            }
+
+            // Para validación de nombre y programa únicos
+            const nombreProgramaKey = `${nombreTrimmed.toLowerCase()}|${programaTrimmed.toLowerCase()}`;
+            nombresProgramas.add(nombreProgramaKey);
+        }
+
+        // Validación de códigos de integrantes únicos dentro del equipo
+        const codigosIntegrantes = integrantes.map(i => (i.codigo ? String(i.codigo).trim() : ""));
+        const codigosUnicos = new Set(codigosIntegrantes);
+        if (codigosUnicos.size !== codigosIntegrantes.length) {
             return new Response(
-                JSON.stringify({ success: false, message: 'Se requiere al menos el capitán (Integrante 1) con código y nombre.' }),
+                JSON.stringify({ success: false, message: 'Los códigos de los integrantes del equipo deben ser diferentes entre sí.' }),
                 { status: 400, headers: { "Content-Type": "application/json" } }
             );
+        }
+
+
+        if (nombresProgramas.size < integrantes.length) {
+            return new Response(
+                JSON.stringify({ success: false, message: 'Los datos (nombre y programa) de los integrantes del equipo deben ser diferentes entre sí. Parece que un estudiante está registrado más de una vez.' }),
+                { status: 400, headers: { "Content-Type": "application/json" } }
+            );
+        }
+
+        for (const codigoEstudiante of codigosParaValidar) {
+            const checkEstudianteSql = `
+                SELECT id FROM equipos WHERE
+                codigo_integrante1 = :codigo OR
+                codigo_integrante2 = :codigo OR
+                codigo_integrante3 = :codigo OR
+                codigo_integrante4 = :codigo OR
+                codigo_integrante5 = :codigo
+                LIMIT 1;
+            `;
+            const estudianteExistente = await turso.execute({
+                sql: checkEstudianteSql,
+                args: { codigo: codigoEstudiante }
+            });
+
+            if (estudianteExistente.rows.length > 0) {
+                return new Response(
+                    JSON.stringify({ success: false, message: `El estudiante con código ${codigoEstudiante} ya está registrado en otro equipo.` }),
+                    { status: 409, headers: { "Content-Type": "application/json" } } // 409 Conflict es apropiado aquí
+                );
+            }
         }
 
         const existingTeam = await turso.execute({
