@@ -4,6 +4,8 @@ import logored from "@assets/imgs/logo_3d_red.png";
 import logoblue from "@assets/imgs/logo_3d_blue.png";
 import videoBlue from "@assets/videos/file3.mp4";
 import videoRed from "@assets/videos/file4.mp4";
+import ButtonDanger from "@components/buttons/ButtonDanger.astro";
+import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
 ---
 
 <script>
@@ -98,13 +100,14 @@ import videoRed from "@assets/videos/file4.mp4";
   {/* Button change mode video */}
   <div
     id="change-mode-video"
-    class="absolute top-4 right-4 z-20 bg-white/20 p-2 rounded-full"
+    class="absolute top-4 right-4 z-20 bg-white/5 p-2 rounded-sm"
   >
-    <button
+    <!-- <button
       class="bg-white text-black px-4 py-2 rounded-full shadow-lg hover:bg-gray-200 transition-colors cursor-pointer"
     >
       Cambiar Tema
-    </button>
+    </button> -->
+    <ButtonDanger label="Cambiar Tema"/>
   </div>
 
   {/* Video de fondo */}
@@ -178,12 +181,7 @@ import videoRed from "@assets/videos/file4.mp4";
         e-sports LTD
       </h1>
 
-      <a
-        href="/registro"
-        class="uppercase inline-block bg-[#447E4E] text-white px-8 py-3 shadow-lg transition-colors hover:bg-green-700 animate-fade-in-up animate-delay-500 transform skew-x-[-20deg] tracking-[0.17em] font-bold border-2 border-white/70"
-      >
-        Registra a tu equipo
-      </a>
+      <ButtonPrimaryShadow label="registra a tu equipo" />
     </div>
   </div>
 </div>
