@@ -86,9 +86,10 @@ const videoRedSrcFromComponent =
                             required
                             data-integrante-index="1"
                         />
+
                         <button
                             type="button"
-                            class="verificar-codigo-btn bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-sm flex-shrink-0"
+                            class="verificar-codigo-btn verificar-button-dota-style flex-shrink-0"
                             data-integrante-index="1"
                         >
                             Verificar
@@ -129,7 +130,7 @@ const videoRedSrcFromComponent =
                         />
                         <button
                             type="button"
-                            class="verificar-codigo-btn bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-sm flex-shrink-0"
+                            class="verificar-codigo-btn verificar-button-dota-style flex-shrink-0"
                             data-integrante-index="2"
                         >
                             Verificar
@@ -169,7 +170,7 @@ const videoRedSrcFromComponent =
                         />
                         <button
                             type="button"
-                            class="verificar-codigo-btn bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-sm flex-shrink-0"
+                            class="verificar-codigo-btn verificar-button-dota-style flex-shrink-0"
                             data-integrante-index="3"
                         >
                             Verificar
@@ -209,7 +210,7 @@ const videoRedSrcFromComponent =
                         />
                         <button
                             type="button"
-                            class="verificar-codigo-btn bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-sm flex-shrink-0"
+                            class="verificar-codigo-btn verificar-button-dota-style flex-shrink-0"
                             data-integrante-index="4"
                         >
                             Verificar
@@ -249,7 +250,7 @@ const videoRedSrcFromComponent =
                         />
                         <button
                             type="button"
-                            class="verificar-codigo-btn bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-sm flex-shrink-0"
+                            class="verificar-codigo-btn verificar-button-dota-style flex-shrink-0"
                             data-integrante-index="5"
                         >
                             Verificar
@@ -288,29 +289,17 @@ const videoRedSrcFromComponent =
 </div>
 
 <style>
-    /* Estilos para el scrollbar personalizado */
-    /* Funciona en navegadores WebKit/Blink (Chrome, Edge, Safari, Opera) */
     .custom-scrollbar-container::-webkit-scrollbar {
         width: 8px; /* Ancho del scrollbar */
     }
 
     .custom-scrollbar-container::-webkit-scrollbar-track {
-        background: rgba(
-            255,
-            255,
-            255,
-            0.1
-        ); /* Color del "riel" o fondo del scrollbar */
+        background: rgba(255, 255, 255, 0.1);
         border-radius: 10px;
     }
 
     .custom-scrollbar-container::-webkit-scrollbar-thumb {
-        background: rgba(
-            220,
-            38,
-            38,
-            0.7
-        ); /* Color del "mango" del scrollbar (rojo semitransparente) */
+        background: rgba(220, 38, 38, 0.7);
         border-radius: 10px;
     }
 
@@ -327,6 +316,34 @@ const videoRedSrcFromComponent =
     .custom-scrollbar-container {
         scrollbar-width: thin; /* Puede ser 'auto', 'thin', o 'none' */
         scrollbar-color: rgba(220, 38, 38, 0.7) rgba(255, 255, 255, 0.1); /* color del thumb y color del track */
+    }
+
+    .verificar-button-dota-style {
+        background: linear-gradient(to bottom, #6b211c, #8e2b19);
+        border: 1px solid #bc4539;
+        color: white;
+        font-size: 12px; /* Ajusta si es necesario, era text-sm antes */
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        padding: 12px 24px; /* Ajusta si es necesario, era px-4 py-2 antes */
+        cursor: pointer;
+        transition:
+            filter 0.1s linear,
+            border 0.1s linear;
+        text-shadow: 0px 0px 6px rgba(0, 0, 0, 1);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+        /* flex-shrink: 0; ya estaba en las clases de Tailwind, se mantiene si es necesario */
+    }
+
+    .verificar-button-dota-style:hover {
+        filter: brightness(1.2);
+    }
+
+    .verificar-button-dota-style:active {
+        filter: brightness(1.4);
+        border-color: #501f18;
+        transform: translateY(1px);
     }
 </style>
 
