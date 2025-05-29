@@ -1,3 +1,76 @@
-<section id="esports-ltd" class="h-80 w-full bg-black">
+---
+import RefDanger from "@/components/buttons/RefDanger.astro";
+import Title from "@/components/Title.astro";
+import escudoTI from "@assets/imgs/escudoTI.png";
+---
 
+<section
+  id="acerca"
+  class="relative min-h-screen w-full bg-black text-white text-center py-20 bg-gradient-to-b from-transparent to-slate-800 overflow-hidden"
+>
+  <!-- Fondo del escudo con estilo visual tenue -->
+  <img
+    src={escudoTI.src}
+    alt="Escudo TI"
+    class="absolute top-0 left-0 w-full h-full object-contain opacity-10 z-0 pointer-events-none select-none"
+  />
+
+  <!-- Contenido encima -->
+  <div class="relative z-10">
+    <div
+      class="h-full w-full text-start px-10 lg:px-40 2xl:px-52 text-xl mt-0 sm:mt-10 space-y-6 animate-fade-in-down animate-delay-300"
+    >
+      <div class="flex-col sm:flex-row flex justify-center items-center sm:justify-between gap-2">
+        <RefDanger to="/" className="!rounded-sm !px-4 !py-2 !text-center font-aminute" label="Volver" />
+        <Title
+          className="!text-3xl sm:!text-5xl !animate-blurred-fade-in"
+          label="¿e-sports ltd?"
+        />
+        <div class="hidden sm:block"></div>
+      </div>
+      <p>
+        El objetivo principal del torneo "Copa eSports UDH 3.0" es promover el
+        uso de la tecnología como medio de innovación, integración y desarrollo
+        de competencias digitales, mediante la organización de un evento
+        competitivo de eSports en el marco del aniversario de la Universidad de
+        Huánuco.
+      </p>
+      <p>
+        A través de esta actividad, se busca fomentar el interés por las
+        tendencias tecnológicas actuales, especialmente en el ámbito de los
+        videojuegos electrónicos, y demostrar cómo estas pueden ser aplicadas en
+        contextos educativos, empresariales, públicos y sociales.
+      </p>
+      <p>
+        <strong>Organiza:</strong> Laboratorio de Transformación Digital<br />
+        <strong>Lugar:</strong> Campus La Esperanza, Pabellón 2 - Aula 503<br />
+        <strong>Fecha:</strong> Del 10 al 13 de junio de 2025<br />
+        <strong>Juego:</strong> Dota 2 (PC – Steam)<br />
+        <strong>Modalidad:</strong> Eliminación directa<br />
+        <strong>Formato:</strong> BO1 (etapas previas y semifinal), BO5 (final)
+      </p>
+      <p>
+        <strong>Etapas:</strong><br />
+        Día 1 (10-Jun): Clasificatorias – 32 equipos<br />
+        Día 2 (11-Jun): Octavos de final – 16 equipos<br />
+        Día 3 (12-Jun): Cuartos (mañana) y Semifinales (tarde) – 8 y 4 equipos<br
+        />
+        Día 4 (13-Jun): Final – 2 equipos
+      </p>
+      <p>
+        <strong>Requisitos para participar:</strong><br />
+        - Ser estudiante matriculado en el semestre 2025-I<br />
+        - Equipos de 5 integrantes + un Team Leader<br />
+        - Costo de inscripción: S/ 50 por equipo<br />
+        - Inscripción hasta el 6 de junio
+      </p>
+      <p>
+        <strong>Condiciones importantes:</strong><br />
+        - Puntualidad obligatoria<br />
+        - Prohibido uso de hacks o conductas antideportivas<br />
+        - Desconexiones en los primeros 5 min se reportan por Discord<br />
+        - Las decisiones del comité organizador son inapelables
+      </p>
+    </div>
+  </div>
 </section>
