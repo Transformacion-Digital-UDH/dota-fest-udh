@@ -7,6 +7,8 @@ import videoRed from "@assets/videos/file4.mp4";
 import ButtonDanger from "@components/buttons/ButtonDanger.astro";
 import Sidebar from "@components/Sidebar.astro";
 import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
+import Title from "@/components/Title.astro";
+
 ---
 
 <script>
@@ -19,6 +21,7 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
   const logo_red = document.querySelector("#logo-red");
   const logo_blue = document.querySelector("#logo-blue");
   const change_btn = document.querySelector("#change-btn");
+  const sectionabout = document.querySelector('#esports-ltd')
 
   const VIDEO_RED_ID = "video-red";
   const VIDEO_BLUE_ID = "video-blue";
@@ -49,6 +52,8 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
       logo_red?.classList.add("hidden");
       change_btn?.classList.add('dota-button-danger')
       change_btn?.classList.remove('dota-button-default')
+      sectionabout?.classList.add('to-slate-800')
+      sectionabout?.classList.remove('to-red-800/30')
       video_blue?.play();
       video_red?.pause();
     } else {
@@ -58,6 +63,8 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
       logo_blue?.classList.add("hidden");
       change_btn?.classList.remove('dota-button-danger')
       change_btn?.classList.add('dota-button-default')
+      sectionabout?.classList.add('to-red-800/30')
+      sectionabout?.classList.remove('to-slate-800')
       video_red
         ?.play()
         .catch((e) => console.warn("Video rojo play() error:", e));
@@ -84,14 +91,6 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
 
     if (!localStorage.getItem(LOCAL_STORAGE_KEY)) {
       setActiveVideoPreference(preferredVideo);
-    }
-
-    if(preferredVideo === 'video-red'){
-      change_btn?.classList.remove('dota-button-danger')
-      change_btn?.classList.add('dota-button-default')
-    }else{
-      change_btn?.classList.remove('dota-button-default')
-      change_btn?.classList.add('dota-button-danger')
     }
 
     const clouds = document.querySelectorAll(".cloud");
@@ -195,11 +194,8 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
       >
         torneo de dota 2
       </p>
-      <h1
-        class="uppercase text-6xl lg:text-8xl 2xl:text-[7rem] font-extrabold font-alifira tracking-wider animate-fade-in-up animate-delay-300"
-      >
-        e-sports LTD
-      </h1>
+
+      <Title label="e-sports ltd" />
     </div>
     <ButtonPrimaryShadow label="registra a tu equipo" />
   </div>
