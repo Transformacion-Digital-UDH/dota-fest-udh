@@ -17,6 +17,7 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
   const video_blue = document.querySelector("#video-blue") as HTMLVideoElement;
   const logo_red = document.querySelector("#logo-red");
   const logo_blue = document.querySelector("#logo-blue");
+  const change_btn = document.querySelector("#change-btn");
 
   const VIDEO_RED_ID = "video-red";
   const VIDEO_BLUE_ID = "video-blue";
@@ -45,6 +46,8 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
       video_blue?.classList.remove("hidden");
       logo_blue?.classList.remove("hidden");
       logo_red?.classList.add("hidden");
+      change_btn?.classList.add('dota-button-danger')
+      change_btn?.classList.remove('dota-button-default')
       video_blue?.play();
       video_red?.pause();
     } else {
@@ -52,6 +55,8 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
       video_blue?.classList.add("hidden");
       logo_red?.classList.remove("hidden");
       logo_blue?.classList.add("hidden");
+      change_btn?.classList.remove('dota-button-danger')
+      change_btn?.classList.add('dota-button-default')
       video_red
         ?.play()
         .catch((e) => console.warn("Video rojo play() error:", e));
@@ -78,6 +83,14 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
 
     if (!localStorage.getItem(LOCAL_STORAGE_KEY)) {
       setActiveVideoPreference(preferredVideo);
+    }
+
+    if(preferredVideo === 'video-red'){
+      change_btn?.classList.remove('dota-button-danger')
+      change_btn?.classList.add('dota-button-default')
+    }else{
+      change_btn?.classList.remove('dota-button-default')
+      change_btn?.classList.add('dota-button-danger')
     }
 
     const clouds = document.querySelectorAll(".cloud");
@@ -107,7 +120,7 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
     >
       Cambiar Tema
     </button> -->
-    <ButtonDanger label="Cambiar Tema"/>
+    <ButtonDanger idbtn="change-btn" label="Cambiar Tema"/>
   </div>
 
   {/* Video de fondo */}
