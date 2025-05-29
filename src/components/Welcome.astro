@@ -5,6 +5,7 @@ import logoblue from "@assets/imgs/logo_3d_blue.png";
 import videoBlue from "@assets/videos/file3.mp4";
 import videoRed from "@assets/videos/file4.mp4";
 import ButtonDanger from "@components/buttons/ButtonDanger.astro";
+import Sidebar from "@components/Sidebar.astro";
 import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
 ---
 
@@ -107,13 +108,14 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
   });
 </script>
 
-<div
+<section
+  id="inicio"
   class="h-dvh bg-black text-white flex flex-col items-center justify-center gap-4 relative overflow-hidden font-aminute"
 >
   {/* Button change mode video */}
   <div
     id="change-mode-video"
-    class="absolute top-4 right-4 z-20 bg-white/5 p-2 rounded-sm animate-move-from-top"
+    class="fixed top-4 right-4 z-20 bg-white/5 p-2 rounded-sm animate-move-from-top"
   >
     <!-- <button
       class="bg-white text-black px-4 py-2 rounded-full shadow-lg hover:bg-gray-200 transition-colors cursor-pointer"
@@ -122,6 +124,9 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
     </button> -->
     <ButtonDanger idbtn="change-btn" label="Cambiar Tema"/>
   </div>
+
+  {/* Sidebar */}
+  <Sidebar />
 
   {/* Video de fondo */}
   <video
@@ -196,4 +201,4 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
     </div>
     <ButtonPrimaryShadow label="registra a tu equipo" />
   </div>
-</div>
+</section>
