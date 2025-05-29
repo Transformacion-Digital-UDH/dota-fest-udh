@@ -30,7 +30,7 @@
 
   /* Animations */
   --animate-move-cloud: move-cloud 3s ease-in-out infinite;
-  --animate-move-from-bottom: moveFromBottom 1.5s ease forwards;
+  --animate-move-from-top: moveFromTop .7s ease-in forwards;
 
   @keyframes move-cloud {
     0% {
@@ -50,9 +50,9 @@
     }
   }
 
-  @keyframes moveFromBottom {
+  @keyframes moveFromTop {
     0% {
-      transform: translateY(100%);
+      transform: translateY(-120%);
     }
     100% {
       transform: translateY(0);
