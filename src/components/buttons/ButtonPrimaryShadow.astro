@@ -2,7 +2,7 @@
 const { label } = Astro.props;
 ---
 
-<a href="/registro" class="dota-find-match"> {label} </a>
+<a href="/registro" class="dota-find-match text-lg lg:text-xl 2xl:text-2xl px-10 py-4 sm:px-24 animate-blurred-fade-in animate-delay-200"> {label} </a>
 
 <style>
   .dota-find-match {
@@ -10,20 +10,19 @@ const { label } = Astro.props;
     background: linear-gradient(to bottom, #3d7c3c, #2d5c2a);
     border: 2px solid #4caf50;
     color: white;
-    font-family: "Aminute", Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 22px;
+    /* font-size: 22px; */
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 0.3em;
-    padding: 15px 100px;
+    /* padding: 15px 100px; */
     cursor: pointer;
     text-shadow:
       0 1px 2px rgba(0, 0, 0, 0.8),
       0 0 8px #a4ffb1;
     box-shadow:
       0 0 30px 10px rgba(102, 255, 153, 0.5),
-      /* exterior glow */ inset 0 0 20px rgba(0, 0, 0, 0.7); /* inner shadow */
-    background-image: url("/textures/dota_pattern.png"); /* usa tu textura */
+      inset 0 0 20px rgba(0, 0, 0, 0.7); 
+    background-image: url("/textures/dota_pattern.png");
     background-size: cover;
     background-blend-mode: overlay;
     border-radius: 5px;

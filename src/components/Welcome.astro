@@ -5,6 +5,7 @@ import logoblue from "@assets/imgs/logo_3d_blue.png";
 import videoBlue from "@assets/videos/file3.mp4";
 import videoRed from "@assets/videos/file4.mp4";
 import ButtonDanger from "@components/buttons/ButtonDanger.astro";
+import Sidebar from "@components/Sidebar.astro";
 import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
 ---
 
@@ -17,6 +18,7 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
   const video_blue = document.querySelector("#video-blue") as HTMLVideoElement;
   const logo_red = document.querySelector("#logo-red");
   const logo_blue = document.querySelector("#logo-blue");
+  const change_btn = document.querySelector("#change-btn");
 
   const VIDEO_RED_ID = "video-red";
   const VIDEO_BLUE_ID = "video-blue";
@@ -45,6 +47,8 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
       video_blue?.classList.remove("hidden");
       logo_blue?.classList.remove("hidden");
       logo_red?.classList.add("hidden");
+      change_btn?.classList.add('dota-button-danger')
+      change_btn?.classList.remove('dota-button-default')
       video_blue?.play();
       video_red?.pause();
     } else {
@@ -52,6 +56,8 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
       video_blue?.classList.add("hidden");
       logo_red?.classList.remove("hidden");
       logo_blue?.classList.add("hidden");
+      change_btn?.classList.remove('dota-button-danger')
+      change_btn?.classList.add('dota-button-default')
       video_red
         ?.play()
         .catch((e) => console.warn("Video rojo play() error:", e));
@@ -80,6 +86,14 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
       setActiveVideoPreference(preferredVideo);
     }
 
+    if(preferredVideo === 'video-red'){
+      change_btn?.classList.remove('dota-button-danger')
+      change_btn?.classList.add('dota-button-default')
+    }else{
+      change_btn?.classList.remove('dota-button-default')
+      change_btn?.classList.add('dota-button-danger')
+    }
+
     const clouds = document.querySelectorAll(".cloud");
     clouds.forEach((cloud) => {
       cloud.classList.add("animate-move-from-bottom");
@@ -94,27 +108,32 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
   });
 </script>
 
-<div
+<section
+  id="inicio"
   class="h-dvh bg-black text-white flex flex-col items-center justify-center gap-4 relative overflow-hidden font-aminute"
 >
   {/* Button change mode video */}
   <div
     id="change-mode-video"
-    class="absolute top-4 right-4 z-20 bg-white/5 p-2 rounded-sm"
+    class="fixed top-4 right-4 z-20 bg-white/5 p-2 rounded-sm animate-move-from-top"
   >
     <!-- <button
       class="bg-white text-black px-4 py-2 rounded-full shadow-lg hover:bg-gray-200 transition-colors cursor-pointer"
     >
       Cambiar Tema
     </button> -->
-    <ButtonDanger label="Cambiar Tema"/>
+    <ButtonDanger idbtn="change-btn" label="Cambiar Tema"/>
   </div>
+
+  {/* Sidebar */}
+  <Sidebar />
 
   {/* Video de fondo */}
   <video
     id="video-red"
     src={videoRed}
     class="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-75"
+    style="mask-image: linear-gradient(to bottom, black 80%, transparent);"
     autoplay
     muted
     loop></video>
@@ -122,6 +141,7 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
   <video
     id="video-blue"
     src={videoBlue}
+    style="mask-image: linear-gradient(to bottom, black 80%, transparent);"
     class="hidden absolute top-0 left-0 w-full h-full object-cover z-0 opacity-75"
     muted
     loop></video>
@@ -130,27 +150,27 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
   <img
     src={cloud.src}
     alt="cloud"
-    class="absolute top-[72%] right-[25%] cloud grayscale opacity-40 z-10 w-96"
+    class="absolute top-[70%] sm:top-[72%] right-[5%] lg:right-[20%] 2xl:right-[25%] cloud grayscale opacity-40 z-10 w-60 lg:w-80 2xl:w-96"
   />
   <img
     src={cloud.src}
     alt="cloud"
-    class="absolute top-[62%] right-1/2 cloud grayscale opacity-40 z-10 w-96"
+    class="absolute top-[65%] sm:top-[62%] right-1/2 cloud grayscale opacity-40 z-10 w-60 lg:w-80 2xl:w-96"
   />
   <img
     src={cloud.src}
     alt="cloud"
-    class="absolute top-[62%] left-1/2 cloud grayscale opacity-40 z-10 w-96"
+    class="absolute top-[65%] sm:top-[62%] left-1/2 cloud grayscale opacity-40 z-10 w-60 lg:w-80 2xl:w-96"
   />
   <img
     src={cloud.src}
     alt="cloud"
-    class="absolute top-[72%] left-[25%] cloud grayscale opacity-40 z-10 w-96"
+    class="absolute top-[70%] sm:top-[72%] left-[5%] lg:left-[20%] 2xl:left-[25%] cloud grayscale opacity-40 z-10 w-60 lg:w-80 2xl:w-96"
   />
   <img
     src={cloud.src}
     alt="cloud"
-    class="absolute top-[65%] cloud grayscale z-10 w-96 opacity-40"
+    class="absolute top-[65%] cloud grayscale z-10 w-60 lg:w-80 2xl:w-96 opacity-40"
   />
 
   {/* Logo and presentation */}
@@ -171,17 +191,16 @@ import ButtonPrimaryShadow from "@components/buttons/ButtonPrimaryShadow.astro";
 
     <div class="text-center">
       <p
-        class="uppercase text-2xl tracking-[0.3em] animate-fade-in-up animate-delay-100"
+        class="uppercase text-lg sm:text-2xl tracking-[0.3em] animate-fade-in-up animate-delay-100 mb-2"
       >
         torneo de dota 2
       </p>
       <h1
-        class="uppercase text-[7rem] font-extrabold font-alifira tracking-wider animate-fade-in-up animate-delay-300"
+        class="uppercase text-6xl lg:text-8xl 2xl:text-[7rem] font-extrabold font-alifira tracking-wider animate-fade-in-up animate-delay-300"
       >
         e-sports LTD
       </h1>
-
-      <ButtonPrimaryShadow label="registra a tu equipo" />
     </div>
+    <ButtonPrimaryShadow label="registra a tu equipo" />
   </div>
-</div>
+</section>
