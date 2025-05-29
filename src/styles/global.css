@@ -30,7 +30,10 @@
 
   /* Animations */
   --animate-move-cloud: move-cloud 3s ease-in-out infinite;
-  --animate-move-from-top: moveFromTop .7s ease-in forwards;
+  --animate-move-from-top: moveFromTop .7s ease-in-out forwards;
+  --animate-move-from-right: moveFromRight .9s ease-in-out forwards;
+  --animate-move-from-left: moveFromLeft .7s ease-in-out forwards;
+  --animate-move-from-bottom: moveFromBottom 1.5s ease-in-out forwards;
 
   @keyframes move-cloud {
     0% {
@@ -56,6 +59,33 @@
     }
     100% {
       transform: translateY(0);
+    }
+  }
+
+  @keyframes moveFromBottom {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes moveFromRight {
+    0% {
+      transform: translateX(10%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+    }
+
+  @keyframes moveFromLeft {
+    0% {
+      transform: translateX(-10%);
+    }
+    100% {
+      transform: translateX(0);
     }
   }
 }
