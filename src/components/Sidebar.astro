@@ -1,23 +1,47 @@
+---
+import NavItem from "./NavItem.astro";
 
-<aside class="fixed top-32 right-8 z-20 animate-slide-in-right animate-delay-250">
-  <nav class="flex flex-col gap-14 2xl:gap-20 text-end text-xl 2xl:text-2xl tracking-widest">
-    <div>
-      <a href="#inicio">Inicio</a>
-    </div>
-    <div>
-      <a href="/acerca">¿E-sports LTD?</a>
-    </div>
-    <div>
-      <a href="#premio">Premio</a>
-    </div>
-    <div>
-      <a href="#equipos">Equipos</a>
-    </div>
-    <div>
-      <a href="#agenda">Agenda</a>
-    </div>
-    <div>
-      <a href="#reglas">Reglas</a>
-    </div>
+const links = [
+  { label: "inicio", to: "#inicio" },
+  { label: "premio", to: "#premio" },
+  { label: "equipos", to: "#equipos" },
+  { label: "agenda", to: "#agenda" },
+  { label: "reglas", to: "#reglas" },
+  { label: "¿E-sports LTD?", to: "/acerca" },
+];
+---
+
+<script>
+  // Función que actualiza el estado de los span según el hash
+  function updateActiveLink() {
+    const hash = window.location.hash;
+    const links = document.querySelectorAll("aside nav a");
+
+    links.forEach((link) => {
+      const span = link.querySelector(".w-animate");
+
+      if (link.getAttribute("href") === hash) {
+        span?.classList.remove("w-0");
+        span?.classList.add("w-full");
+      } else {
+        span?.classList.remove("w-full");
+        span?.classList.add("w-0");
+      }
+    });
+  }
+
+  // Ejecutar al cargar la página
+  window.addEventListener("DOMContentLoaded", updateActiveLink);
+  // Ejecutar cuando el hash cambie (por navegación)
+  window.addEventListener("hashchange", updateActiveLink);
+</script>
+
+<aside
+  class="fixed top-32 right-8 z-20 animate-slide-in-right animate-delay-250 hidden sm:block"
+>
+  <nav
+    class="flex flex-col gap-14 2xl:gap-20 text-end text-xl 2xl:text-2xl tracking-widest"
+  >
+    {links.map((link) => <NavItem to={link.to} label={link.label} />)}
   </nav>
 </aside>

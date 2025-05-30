@@ -1,3 +1,106 @@
-<section id="premio" class="h-80 w-full bg-black">
+---
+import Title from "@/components/Title.astro";
+import bgBounty from "@assets/imgs/bg_bounty_run.jpg";
+import comboOgre from "@assets/imgs/combo.png";
+import coinBooster from "@assets/imgs/coin_booster.png";
+import bountyRun from "@assets/imgs/bounty_run.png";
+import rewardCoin from "@assets/imgs/rewards_coins.png";
+import rewardTreasure from "@assets/imgs/rewards_treasures.png";
+---
 
+<script>
+  const counterEl = document.getElementById("counter");
+  let started = false;
+
+  function animateCount(el: any, to = 1000, duration = 1500) {
+    let start = 0;
+    const stepTime = Math.abs(Math.floor(duration / to));
+    const startTime = performance.now();
+
+    function update(currentTime: any) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const value = Math.floor(progress * to);
+      el.textContent = value.toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+      });
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      }
+    }
+
+    requestAnimationFrame(update);
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !started) {
+          started = true;
+          animateCount(counterEl, 1000, 2000);
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  if (counterEl) observer.observe(counterEl);
+</script>
+
+<section
+  id="premio"
+  class="text-center h-full w-full bg-black text-white relative overflow-hidden"
+>
+  <img
+    src={bgBounty.src}
+    alt="bgbountyrun"
+    class="absolute top-0 left-0 w-full h-full object-cover opacity-60 z-0 pointer-events-none select-none"
+    style="mask-image: linear-gradient(to top,black 80%,transparent);"
+  />
+
+  <Title
+    className="text-4xl lg:!text-6xl 2xl:!text-7xl !animate-blurred-fade-in !font-aminute relative top-5 !tracking-[0.2em]"
+    label="premio"
+  />
+  <div class="relative flex items-center content-center justify-center pt-10 lg:pt-0 2xl:pt-0">
+    <img
+      src={rewardCoin.src}
+      alt=""
+      class="animate-float animate-iteration-count-infinite animate-duration-[2200ms] absolute bottom-[50%] right-[42%] w-16 lg:w-24 2xl:w-32 z-10"
+    />
+    <img
+      src={rewardTreasure.src}
+      alt=""
+      class="animate-float animate-iteration-count-infinite animate-duration-[1800ms] absolute bottom-[69%] right-[58%] w-24 lg:w-32 2xl:w-40 z-10"
+    />
+    <img
+      src={coinBooster.src}
+      alt=""
+      class="animate-float animate-iteration-count-infinite animate-duration-[2100ms] absolute bottom-[68%] left-[55%] w-40 lg:w-52 2xl:w-72 z-10"
+    />
+    <img
+      src={bountyRun.src}
+      alt=""
+      class="animate-float animate-iteration-count-infinite animate-duration-[1700ms] absolute bottom-[50%] right-[56%] w-40 lg:w-60 2xl:w-72"
+    />
+    <img
+      src={comboOgre.src}
+      alt=""
+      class="w-[32rem] lg:w-[40rem] 2xl:w-[52rem]"
+      style="mask-image: linear-gradient(to bottom, black 90%, transparent);"
+    />
+  </div>
+  <p
+    id="counter"
+    class="bg-gradient-to-t from-yellow-400 to-red-200 bg-clip-text text-transparent
+         drop-shadow-2xl drop-shadow-[#d91402] font-agency font-normal -mt-10 relative
+         text-7xl lg:text-8xl 2xl:text-9xl"
+  >
+    0
+  </p>
+  <p
+    class="text-3xl sm:text-4xl font-aminute text-white uppercase font-semibold tracking-[0.3em] relative"
+  >
+    soles
+  </p>
 </section>
