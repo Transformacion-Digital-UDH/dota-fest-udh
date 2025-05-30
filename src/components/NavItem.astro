@@ -1,0 +1,10 @@
+---
+const { label, to, className } = Astro.props;
+---
+
+<a href={to} class="relative group capitalize">
+  {label}
+  <span
+    class=`w-animate absolute bottom-0 right-0 h-[2px] bg-[#ffffff] rounded-full transform transition-all duration-500 ease-in w-0 opacity-70 group-hover:w-full group-hover:opacity-100 ${className}`
+  ></span>
+</a>
