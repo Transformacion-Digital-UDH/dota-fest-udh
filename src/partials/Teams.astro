@@ -1,0 +1,25 @@
+---
+import nobgudh from "@assets/videos/dota.mp4";
+---
+
+<section
+  id="equipos"
+  class="h-dvh w-full bg-black text-white relative overflow-hidden"
+>
+  <video
+    src={nobgudh}
+    class="absolute top-0 left-0 w-full h-full object-cover opacity-85 z-0 pointer-events-none select-none"
+    style="
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 50%, black 50%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 50%, black 50%, transparent 100%);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  "
+    autoplay
+    muted
+    loop></video>
+
+  <div></div>
+</section>
