@@ -23,6 +23,18 @@
   font-style: normal;
 }
 
+html, body{
+  cursor: url('/cursors/select.png'), default;
+}
+
+a,
+button,
+a#back,
+a#register,
+button#change-btn {
+  cursor: url('/cursors/pointer.png'), pointer;
+}
+
 @theme {
   --font-aminute: 'Aminute', sans-serif;
   --font-agency: 'Agency', sans-serif;
