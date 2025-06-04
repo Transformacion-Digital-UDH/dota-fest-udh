@@ -22,7 +22,9 @@ async function ensureTableExists() {
           programa_integrante4 TEXT, 
           codigo_integrante5 TEXT, 
           nombre_integrante5 TEXT, 
-          programa_integrante5 TEXT, 
+          programa_integrante5 TEXT,
+          codigo_operacion_yape TEXT,
+          estado_pago TEXT DEFAULT 'PENDIENTE_VERIFICACION',
           creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
       `);
@@ -51,6 +53,7 @@ export const POST: APIRoute = async ({ request }) => {
             codigoIntegrante3, nombreIntegrante3, programaIntegrante3,
             codigoIntegrante4, nombreIntegrante4, programaIntegrante4,
             codigoIntegrante5, nombreIntegrante5, programaIntegrante5,
+            codigoOperacionYape,
         } = data;
 
         if (!nombreEquipo || typeof nombreEquipo !== 'string' || nombreEquipo.trim() === '') {
@@ -59,6 +62,14 @@ export const POST: APIRoute = async ({ request }) => {
                 { status: 400, headers: { "Content-Type": "application/json" } }
             );
         }
+
+        if (!codigoOperacionYape || typeof codigoOperacionYape !== 'string' || codigoOperacionYape.trim() === '') {
+            return new Response(
+                JSON.stringify({ success: false, message: 'El código de operación de Yape es requerido.' }),
+                { status: 400, headers: { "Content-Type": "application/json" } }
+            );
+        }
+        const codigoOperacionTrimmed = codigoOperacionYape.trim();
 
         // Validación para cada integrante
         const integrantes = [
@@ -125,11 +136,12 @@ export const POST: APIRoute = async ({ request }) => {
         for (const codigoEstudiante of codigosParaValidar) {
             const checkEstudianteSql = `
                 SELECT id FROM equipos WHERE
-                codigo_integrante1 = :codigo OR
+                (codigo_integrante1 = :codigo OR
                 codigo_integrante2 = :codigo OR
                 codigo_integrante3 = :codigo OR
                 codigo_integrante4 = :codigo OR
-                codigo_integrante5 = :codigo
+                codigo_integrante5 = :codigo)
+                AND estado_pago != 'RECHAZADO'
                 LIMIT 1;
             `;
             const estudianteExistente = await turso.execute({
@@ -164,27 +176,29 @@ export const POST: APIRoute = async ({ request }) => {
                     codigo_integrante2, nombre_integrante2, programa_integrante2,
                     codigo_integrante3, nombre_integrante3, programa_integrante3,
                     codigo_integrante4, nombre_integrante4, programa_integrante4,
-                    codigo_integrante5, nombre_integrante5, programa_integrante5
+                    codigo_integrante5, nombre_integrante5, programa_integrante5,
+                    codigo_operacion_yape, estado_pago
                   ) VALUES (
                     :nombreEquipo,
                     :codigoIntegrante1, :nombreIntegrante1, :programaIntegrante1,
                     :codigoIntegrante2, :nombreIntegrante2, :programaIntegrante2,
                     :codigoIntegrante3, :nombreIntegrante3, :programaIntegrante3,
                     :codigoIntegrante4, :nombreIntegrante4, :programaIntegrante4,
-                    :codigoIntegrante5, :nombreIntegrante5, :programaIntegrante5
-                  )`,
+                    :codigoIntegrante5, :nombreIntegrante5, :programaIntegrante5,
+                    :codigoOperacionYape, 'PENDIENTE_VERIFICACION'
+                  ) RETURNING id;`,
             args: {
                 nombreEquipo: nombreEquipo.trim(),
-                codigoIntegrante1: codigoIntegrante1 || null, nombreIntegrante1: nombreIntegrante1 || null, programaIntegrante1: programaIntegrante1 || null,
-                codigoIntegrante2: codigoIntegrante2 || null, nombreIntegrante2: nombreIntegrante2 || null, programaIntegrante2: programaIntegrante2 || null,
-                codigoIntegrante3: codigoIntegrante3 || null, nombreIntegrante3: nombreIntegrante3 || null, programaIntegrante3: programaIntegrante3 || null,
-                codigoIntegrante4: codigoIntegrante4 || null, nombreIntegrante4: nombreIntegrante4 || null, programaIntegrante4: programaIntegrante4 || null,
-                codigoIntegrante5: codigoIntegrante5 || null, nombreIntegrante5: nombreIntegrante5 || null, programaIntegrante5: programaIntegrante5 || null,
+                codigoIntegrante1: String(codigoIntegrante1 || "").trim() || null, nombreIntegrante1: String(nombreIntegrante1 || "").trim() || null, programaIntegrante1: String(programaIntegrante1 || "").trim() || null,
+                codigoIntegrante2: String(codigoIntegrante2 || "").trim() || null, nombreIntegrante2: String(nombreIntegrante2 || "").trim() || null, programaIntegrante2: String(programaIntegrante2 || "").trim() || null,
+                codigoIntegrante3: String(codigoIntegrante3 || "").trim() || null, nombreIntegrante3: String(nombreIntegrante3 || "").trim() || null, programaIntegrante3: String(programaIntegrante3 || "").trim() || null,
+                codigoIntegrante4: String(codigoIntegrante4 || "").trim() || null, nombreIntegrante4: String(nombreIntegrante4 || "").trim() || null, programaIntegrante4: String(programaIntegrante4 || "").trim() || null,
+                codigoIntegrante5: String(codigoIntegrante5 || "").trim() || null, nombreIntegrante5: String(nombreIntegrante5 || "").trim() || null, programaIntegrante5: String(programaIntegrante5 || "").trim() || null,
+                codigoOperacionYape: codigoOperacionTrimmed,
             },
         });
 
-        const equipoId = result.lastInsertRowid ? String(result.lastInsertRowid) : null;
-
+        const equipoId = result.rows.length > 0 && result.rows[0].id ? String(result.rows[0].id) : null;
 
         return new Response(
             JSON.stringify({ success: true, message: 'Equipo registrado exitosamente.', equipoId: equipoId }),

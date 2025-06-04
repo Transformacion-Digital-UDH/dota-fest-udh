@@ -1,58 +1,54 @@
 ---
-// Importa las mismas fuentes de video que Welcome.astro
-import videoBlueSrcFromComponent from "@assets/videos/file3.mp4"; // Renombrado para evitar conflicto si se usa en la misma página
+import videoBlueSrcFromComponent from "@assets/videos/file3.mp4";
 const videoRedSrcFromComponent =
     "https://videos.pexels.com/video-files/2715412/2715412-uhd_2560_1440_30fps.mp4";
+import yapeQrImage from "@assets/imgs/yape_qr.jpeg";
 ---
 
 <div
     class="h-dvh bg-black text-white flex flex-col items-center justify-center relative overflow-hidden font-aminute"
 >
-    {/* Videos de fondo */}
+    <!-- Videos de fondo -->
     <video
         id="registro-video-red"
         src={videoRedSrcFromComponent}
         class="hidden absolute top-0 left-0 w-full h-full object-cover z-0 opacity-75"
         autoplay
         muted
-        loop></video>
+        loop
+        playsinline></video>
     <video
         id="registro-video-blue"
         src={videoBlueSrcFromComponent}
         class="hidden absolute top-0 left-0 w-full h-full object-cover z-0 opacity-75"
         autoplay
         muted
-        loop></video>
+        loop
+        playsinline></video>
 
-    {/* Contenido del formulario de registro */}
+    <!-- Contenido del formulario de registro -->
     <div
         class="relative z-10 flex flex-col items-center text-center p-4 w-full max-w-2xl max-h-[90vh]"
     >
         <h1 class="text-4xl font-bold mb-4 md:mb-8 font-alifira">
-            {/* Reducir margen inferior en móviles */}
             Registro de Equipos
         </h1>
 
-        {/* El formulario ahora es un flex container en columna */}
         <form
             id="formRegistroEquipo"
             class="w-full max-w-2xl bg-white/10 p-6 md:p-8 rounded-lg shadow-xl flex flex-col max-h-[calc(80vh-55px)]"
         >
-            {/* Contenedor para los campos que tendrán scroll */}
             <div
                 class="flex-grow overflow-y-auto pr-2 space-y-6 custom-scrollbar-container"
             >
-                {/* pr-2 para espacio del scrollbar si es visible */}
-                {/* Nombre del Equipo */}
+                <!-- Nombre del Equipo -->
                 <div>
-                    {
-                        /* Envuelve cada sección principal en un div si no lo está ya */
-                    }
                     <label
                         for="nombreEquipo"
                         class="block text-left text-lg mb-2"
-                        >Nombre del Equipo:</label
                     >
+                        Nombre del Equipo:
+                    </label>
                     <input
                         type="text"
                         id="nombreEquipo"
@@ -63,20 +59,19 @@ const videoRedSrcFromComponent =
                 </div>
 
                 <h2 class="text-2xl mt-6 mb-2">Integrantes del Equipo</h2>
-                {/* Ajustar márgenes */}
                 <p class="mb-4 text-sm">
-                    {/* Ajustar márgenes */}
                     Escribe el código de estudiante de tus compañeros de equipo.
                     Los datos se cargarán automáticamente.
                 </p>
 
-                {/* --- Integrante 1 (Capitán) --- */}
+                <!-- Integrante 1 (Capitán) -->
                 <div class="p-4 border border-white/20 rounded-md">
                     <label
                         for="codigoIntegrante1"
                         class="block text-left text-lg mb-2"
-                        >Código Estudiante (Capitán):</label
                     >
+                        Código Estudiante (Capitán):
+                    </label>
                     <div class="flex items-center gap-2">
                         <input
                             type="text"
@@ -86,7 +81,6 @@ const videoRedSrcFromComponent =
                             required
                             data-integrante-index="1"
                         />
-
                         <button
                             type="button"
                             class="verificar-codigo-btn verificar-button-dota-style flex-shrink-0"
@@ -99,7 +93,6 @@ const videoRedSrcFromComponent =
                         id="datosIntegrante1"
                         class="text-left mt-2 text-sm text-gray-300 min-h-[40px]"
                     >
-                        {/* Aquí se mostrarán los datos del estudiante */}
                     </div>
                     <input
                         type="hidden"
@@ -113,13 +106,14 @@ const videoRedSrcFromComponent =
                     />
                 </div>
 
-                {/* --- Integrante 2 --- */}
+                <!-- Integrante 2 -->
                 <div class="p-4 border border-white/20 rounded-md">
                     <label
                         for="codigoIntegrante2"
                         class="block text-left text-lg mb-2"
-                        >Código Estudiante (Integrante 2):</label
                     >
+                        Código Estudiante (Integrante 2):
+                    </label>
                     <div class="flex items-center gap-2">
                         <input
                             type="text"
@@ -153,13 +147,14 @@ const videoRedSrcFromComponent =
                     />
                 </div>
 
-                {/* --- Integrante 3 --- */}
+                <!-- Integrante 3 -->
                 <div class="p-4 border border-white/20 rounded-md">
                     <label
                         for="codigoIntegrante3"
                         class="block text-left text-lg mb-2"
-                        >Código Estudiante (Integrante 3):</label
                     >
+                        Código Estudiante (Integrante 3):
+                    </label>
                     <div class="flex items-center gap-2">
                         <input
                             type="text"
@@ -193,13 +188,14 @@ const videoRedSrcFromComponent =
                     />
                 </div>
 
-                {/* --- Integrante 4 --- */}
+                <!-- Integrante 4 -->
                 <div class="p-4 border border-white/20 rounded-md">
                     <label
                         for="codigoIntegrante4"
                         class="block text-left text-lg mb-2"
-                        >Código Estudiante (Integrante 4):</label
                     >
+                        Código Estudiante (Integrante 4):
+                    </label>
                     <div class="flex items-center gap-2">
                         <input
                             type="text"
@@ -233,13 +229,14 @@ const videoRedSrcFromComponent =
                     />
                 </div>
 
-                {/* --- Integrante 5 --- */}
+                <!-- Integrante 5 -->
                 <div class="p-4 border border-white/20 rounded-md">
                     <label
                         for="codigoIntegrante5"
                         class="block text-left text-lg mb-2"
-                        >Código Estudiante (Integrante 5):</label
                     >
+                        Código Estudiante (Integrante 5):
+                    </label>
                     <div class="flex items-center gap-2">
                         <input
                             type="text"
@@ -288,58 +285,108 @@ const videoRedSrcFromComponent =
     </div>
 </div>
 
+<!-- Modal de Pago Yape -->
+<div
+    id="yapeModal"
+    class="hidden fixed inset-0 flex items-center justify-center z-50 p-4 bg-opacity-10 backdrop-blur-sm"
+>
+    <div
+        class="bg-gray-900 bg-opacity-70 p-6 md:p-8 rounded-lg shadow-xl w-full max-w-md text-center"
+    >
+        <h3 class="text-2xl font-bold mb-4 font-alifira text-white">
+            Confirma tu Pago
+        </h3>
+        <p class="mb-2 text-white">
+            Para completar la inscripción de tu equipo, por favor paga <strong
+                class="text-purple-400">S/50.00</strong
+            >
+        </p>
+        <img
+            src={yapeQrImage.src}
+            alt="Código QR Yape"
+            class="mx-auto mb-4 w-70 h-78 border-2 border-gray-600 rounded-md"
+        />
+        <p class="mb-2 text-white">
+            Luego ingresa el <strong class="text-yellow-400"
+                >Código de Operación</strong
+            >:
+        </p>
+        <input
+            type="text"
+            id="codigoOperacionYape"
+            name="codigoOperacionYape"
+            class="w-full p-3 mb-4 rounded bg-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-red-500 outline-none"
+            placeholder="Ej: 12345678"
+            required
+        />
+        <div class="flex flex-col sm:flex-row gap-3">
+            <button
+                type="button"
+                id="confirmarPagoBtn"
+                class="verificar-codigo-btn verificar-button-dota-style flex-shrink-0"
+            >
+                Confirmar Pago
+            </button>
+            <button
+                type="button"
+                id="cerrarModalBtn"
+                class="w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300"
+            >
+                Cancelar
+            </button>
+        </div>
+        <p
+            id="modalErrorMessage"
+            class="text-red-400 mt-3 text-sm min-h-[20px]"
+        >
+        </p>
+    </div>
+</div>
+
 <style>
-    .custom-scrollbar-container::-webkit-scrollbar {
-        width: 8px; /* Ancho del scrollbar */
+    /* Asegúrate de que la clase hidden funcione para ocultar */
+    .hidden {
+        display: none;
     }
 
+    .custom-scrollbar-container::-webkit-scrollbar {
+        width: 8px;
+    }
     .custom-scrollbar-container::-webkit-scrollbar-track {
         background: rgba(255, 255, 255, 0.1);
         border-radius: 10px;
     }
-
     .custom-scrollbar-container::-webkit-scrollbar-thumb {
         background: rgba(220, 38, 38, 0.7);
         border-radius: 10px;
     }
-
     .custom-scrollbar-container::-webkit-scrollbar-thumb:hover {
-        background: rgba(
-            185,
-            28,
-            28,
-            0.9
-        ); /* Color del "mango" al pasar el ratón (rojo más opaco) */
+        background: rgba(185, 28, 28, 0.9);
     }
-
-    /* Para Firefox (más limitado, solo color y ancho) */
     .custom-scrollbar-container {
-        scrollbar-width: thin; /* Puede ser 'auto', 'thin', o 'none' */
-        scrollbar-color: rgba(220, 38, 38, 0.7) rgba(255, 255, 255, 0.1); /* color del thumb y color del track */
+        scrollbar-width: thin;
+        scrollbar-color: rgba(220, 38, 38, 0.7) rgba(255, 255, 255, 0.1);
     }
 
     .verificar-button-dota-style {
         background: linear-gradient(to bottom, #6b211c, #8e2b19);
         border: 1px solid #bc4539;
         color: white;
-        font-size: 12px; /* Ajusta si es necesario, era text-sm antes */
+        font-size: 12px;
         font-weight: bold;
         text-transform: uppercase;
         letter-spacing: 0.2em;
-        padding: 12px 24px; /* Ajusta si es necesario, era px-4 py-2 antes */
+        padding: 12px 24px;
         cursor: pointer;
         transition:
             filter 0.1s linear,
             border 0.1s linear;
         text-shadow: 0px 0px 6px rgba(0, 0, 0, 1);
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
-        /* flex-shrink: 0; ya estaba en las clases de Tailwind, se mantiene si es necesario */
     }
-
     .verificar-button-dota-style:hover {
         filter: brightness(1.2);
     }
-
     .verificar-button-dota-style:active {
         filter: brightness(1.4);
         border-color: #501f18;
@@ -348,223 +395,281 @@ const videoRedSrcFromComponent =
 </style>
 
 <script>
+    // @ts-nocheck
+
     document.addEventListener("DOMContentLoaded", () => {
-        const video_red_registro = document.querySelector(
-            "#registro-video-red",
-        ) as HTMLVideoElement;
-        const video_blue_registro = document.querySelector(
+        // 1) Seleccionar ambos videos POR SU ID EXACTO
+        const videoRedRegistro = document.querySelector("#registro-video-red");
+        const videoBlueRegistro = document.querySelector(
             "#registro-video-blue",
-        ) as HTMLVideoElement;
+        );
+
+        // 2) Obtener elementos del formulario y del mensaje
         const formRegistro = document.getElementById("formRegistroEquipo");
         const mensajeRespuesta = document.getElementById(
             "mensajeRespuestaRegistro",
         );
 
-        // Usar la misma clave que en Welcome.astro
-        const LOCAL_STORAGE_KEY_REGISTRO = "activeVideoTheme";
-        const VIDEO_RED_ID_REGISTRO = "video-red"; // Asegúrate que estos valores coincidan
-        const VIDEO_BLUE_ID_REGISTRO = "video-blue"; // con los guardados desde Welcome.astro
+        // 3) Referencias al modal y sus controles
+        const yapeModal = document.getElementById("yapeModal");
+        const codigoOperacionYapeInput = document.getElementById(
+            "codigoOperacionYape",
+        );
+        const confirmarPagoBtn = document.getElementById("confirmarPagoBtn");
+        const cerrarModalBtn = document.getElementById("cerrarModalBtn");
+        const modalErrorMessage = document.getElementById("modalErrorMessage");
 
-        const getActiveVideoPreference = () => {
+        // 4) Claves para video preferido (de Welcome.astro)
+        const LOCAL_STORAGE_KEY_REGISTRO = "activeVideoTheme";
+        // **Estos valores DEBEN ser iguales a los IDs reales de tus <video>**
+        const VIDEO_RED_ID_REGISTRO = "registro-video-red";
+        const VIDEO_BLUE_ID_REGISTRO = "registro-video-blue";
+
+        function getActiveVideoPreference() {
             try {
-                return localStorage.getItem(LOCAL_STORAGE_KEY_REGISTRO); // <--- CORREGIDO
+                return localStorage.getItem(LOCAL_STORAGE_KEY_REGISTRO);
             } catch (e) {
                 console.error("Error reading from localStorage:", e);
-                return VIDEO_RED_ID_REGISTRO; // Default a rojo si hay error
+                return VIDEO_RED_ID_REGISTRO;
             }
-        };
+        }
 
         const preferredVideoId =
             getActiveVideoPreference() || VIDEO_RED_ID_REGISTRO;
 
+        // 5) Mostrar/ocultar según la preferencia
         if (preferredVideoId === VIDEO_BLUE_ID_REGISTRO) {
-            video_blue_registro?.classList.remove("hidden");
-            video_red_registro?.classList.add("hidden");
-            video_blue_registro
-                ?.play()
-                .catch((e) =>
-                    console.warn("Blue video (registro) play interrupted", e),
-                );
-            video_red_registro?.pause();
+            if (videoBlueRegistro instanceof HTMLVideoElement) {
+                videoBlueRegistro.classList.remove("hidden");
+                videoBlueRegistro
+                    .play()
+                    .catch((e) =>
+                        console.warn("Blue video play interrupted", e),
+                    );
+            }
+            if (videoRedRegistro instanceof HTMLVideoElement) {
+                videoRedRegistro.classList.add("hidden");
+                videoRedRegistro.pause();
+            }
         } else {
-            // 'video-red' o cualquier otro valor por defecto
-            video_red_registro?.classList.remove("hidden");
-            video_blue_registro?.classList.add("hidden");
-            video_red_registro
-                ?.play()
-                .catch((e) =>
-                    console.warn("Red video (registro) play interrupted", e),
-                );
-            video_blue_registro?.pause();
+            if (videoRedRegistro instanceof HTMLVideoElement) {
+                videoRedRegistro.classList.remove("hidden");
+                videoRedRegistro
+                    .play()
+                    .catch((e) =>
+                        console.warn("Red video play interrupted", e),
+                    );
+            }
+            if (videoBlueRegistro instanceof HTMLVideoElement) {
+                videoBlueRegistro.classList.add("hidden");
+                videoBlueRegistro.pause();
+            }
         }
 
-        // Lógica para el formulario de registro de equipo
+        // 6) Funciones para mostrar/ocultar modal
+        function mostrarModal() {
+            if (yapeModal) yapeModal.classList.remove("hidden");
+            if (modalErrorMessage) modalErrorMessage.textContent = "";
+        }
+        function ocultarModal() {
+            if (yapeModal) yapeModal.classList.add("hidden");
+        }
+        if (cerrarModalBtn) {
+            cerrarModalBtn.addEventListener("click", () => {
+                ocultarModal();
+            });
+        }
 
+        // 7) Lógica de “Verificar código de integrante”
         const verificarCodigoBtns = document.querySelectorAll(
             ".verificar-codigo-btn",
         );
-
-        async function fetchEstudianteData(
-            codigoEstudiante: string,
-            integranteIndex: string,
-        ) {
+        async function fetchEstudianteData(codigoEstudiante, integranteIndex) {
             const datosDiv = document.getElementById(
                 `datosIntegrante${integranteIndex}`,
             );
             const nombreInput = document.getElementById(
                 `nombreIntegrante${integranteIndex}`,
-            ) as HTMLInputElement;
+            );
             const programaInput = document.getElementById(
                 `programaIntegrante${integranteIndex}`,
-            ) as HTMLInputElement;
-
+            );
             if (!datosDiv || !nombreInput || !programaInput) return;
 
             datosDiv.innerHTML =
                 '<p class="text-yellow-400">Verificando código...</p>';
-            nombreInput.value = ""; // Limpiar campos ocultos
+            nombreInput.value = "";
             programaInput.value = "";
 
             try {
-                // Llamada al endpoint proxy de tu backend de Astro
                 const response = await fetch("/api/verificar-estudiante", {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        codigoEstudiante: codigoEstudiante,
-                    }),
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ codigoEstudiante }),
                 });
-
                 if (!response.ok) {
-                    // Intenta leer el mensaje de error del proxy si está disponible
-                    let errorData;
+                    let errorData = null;
                     try {
                         errorData = await response.json();
-                    } catch (e) {
-                        /* no hacer nada si no es json */
-                    }
+                    } catch {}
                     throw new Error(
                         errorData?.message ||
                             `Error de red: ${response.status}`,
                     );
                 }
-
-                const result = await response.json(); // { success: boolean, data?: any, message?: string }
-
+                const result = await response.json();
                 if (result.success && result.data && result.data.length > 0) {
                     const estudiante = result.data[0];
                     const nombreCompleto =
                         `${estudiante.stu_nombres || ""} ${estudiante.stu_apellido_paterno || ""} ${estudiante.stu_apellido_materno || ""}`.trim();
-
                     datosDiv.innerHTML = `
-                        <p><strong>Nombre:</strong> ${nombreCompleto}</p>
-                        <p><strong>Programa:</strong> ${estudiante.stu_programa || "No disponible"}</p>
-                        <p class="text-green-400">✓ Datos cargados.</p>
-                    `;
+            <p><strong>Nombre:</strong> ${nombreCompleto}</p>
+            <p><strong>Programa:</strong> ${estudiante.stu_programa || "No disponible"}</p>
+            <p class="text-green-400">✓ Datos cargados.</p>
+          `;
                     nombreInput.value = nombreCompleto;
                     programaInput.value = estudiante.stu_programa || "";
                 } else {
-                    datosDiv.innerHTML = `<p class="text-red-400">${result.message || "Código de estudiante no encontrado o sin datos."}</p>`;
+                    datosDiv.innerHTML = `<p class="text-red-400">${result.message || "Código no encontrado."}</p>`;
                 }
-            } catch (error: any) {
-                console.error("Error fetching student data via proxy:", error);
-                datosDiv.innerHTML = `<p class="text-red-400">Error al verificar el código: ${error.message || "Intenta de nuevo."} (Ver consola para detalles)</p>`;
+            } catch (error) {
+                console.error("Error fetching student data:", error);
+                datosDiv.innerHTML = `<p class="text-red-400">Error al verificar, intenta de nuevo.</p>`;
             }
         }
-
         verificarCodigoBtns.forEach((button) => {
             button.addEventListener("click", (event) => {
-                const targetButton = event.target as HTMLButtonElement;
-                const integranteIndex = targetButton.dataset.integranteIndex;
+                const targetButton = event.currentTarget;
+                const integranteIndex = targetButton.getAttribute(
+                    "data-integrante-index",
+                );
+                if (!integranteIndex) return;
                 const codigoInput = document.getElementById(
                     `codigoIntegrante${integranteIndex}`,
-                ) as HTMLInputElement;
-                if (codigoInput && integranteIndex) {
-                    const codigo = codigoInput.value.trim();
-                    if (codigo) {
-                        fetchEstudianteData(codigo, integranteIndex);
-                    } else {
-                        const datosDiv = document.getElementById(
-                            `datosIntegrante${integranteIndex}`,
-                        );
-                        if (datosDiv)
-                            datosDiv.innerHTML =
-                                '<p class="text-yellow-400">Por favor, ingresa un código.</p>';
+                );
+                const datosDiv = document.getElementById(
+                    `datosIntegrante${integranteIndex}`,
+                );
+                if (!codigoInput) return;
+                const codigo = codigoInput.value.trim();
+                if (!codigo) {
+                    if (datosDiv) {
+                        datosDiv.innerHTML =
+                            '<p class="text-yellow-400">Por favor, ingresa un código.</p>';
                     }
+                    return;
                 }
+                fetchEstudianteData(codigo, integranteIndex);
             });
         });
 
-        // Event listener para los inputs de código (opcional, para verificar al perder el foco)
-        document.querySelectorAll(".integrante-codigo").forEach((input) => {
-            input.addEventListener("blur", (event) => {
-                const targetInput = event.target as HTMLInputElement;
-                const integranteIndex = targetInput.dataset.integranteIndex;
-                const codigo = targetInput.value.trim();
-                if (codigo && integranteIndex) {
-                    // Podrías llamar a fetchEstudianteData aquí también si prefieres
-                    // fetchEstudianteData(codigo, integranteIndex);
-                    // O simplemente dejar que el usuario use el botón "Verificar"
-                }
-            });
-        });
-
-        // Lógica para el envío del formulario de registro de equipo (similar a la anterior de usuario)
-        formRegistro?.addEventListener("submit", async (event) => {
+        // 8) Al presionar “Registrar Equipo” → MOSTRAR modal antes de enviar
+        let datosFormularioAntesDePago = null;
+        formRegistro?.addEventListener("submit", (event) => {
             event.preventDefault();
             if (mensajeRespuesta) {
-                mensajeRespuesta.textContent = "Registrando equipo...";
+                mensajeRespuesta.textContent = "Validando datos...";
                 mensajeRespuesta.className = "mt-4 text-yellow-400";
             }
 
-            const formData = new FormData(formRegistro as HTMLFormElement);
-            const data = Object.fromEntries(formData.entries());
+            // Recolectar todos los campos del form
+            const formData = new FormData(formRegistro);
+            const dataObj = Object.fromEntries(formData.entries());
 
-            // console.log("Datos del equipo a registrar:", data); // Para depuración
+            // Validación mínima: nombre del equipo
+            const nombreEquipoInput = document.getElementById("nombreEquipo");
+            if (!nombreEquipoInput || !nombreEquipoInput.value.trim()) {
+                if (mensajeRespuesta) {
+                    mensajeRespuesta.textContent =
+                        "Por favor, ingresa el nombre del equipo.";
+                    mensajeRespuesta.className = "mt-4 text-red-400";
+                }
+                nombreEquipoInput?.focus();
+                return;
+            }
 
+            // Guardar temporalmente los datos del form
+            datosFormularioAntesDePago = dataObj;
+
+            // Mostrar el modal de pago
+            mostrarModal();
+        });
+
+        // 9) En el modal: “Confirmar Pago” → enviar a /api/registrar-equipo + estado “PENDIENTE_VERIFICACION”
+        confirmarPagoBtn?.addEventListener("click", async () => {
+            if (!datosFormularioAntesDePago) {
+                if (modalErrorMessage) {
+                    modalErrorMessage.textContent =
+                        "No se encontraron datos del formulario.";
+                }
+                return;
+            }
+
+            // Leer el código de operación que ingresó el usuario
+            const codigoOperacion = codigoOperacionYapeInput.value.trim();
+            if (!codigoOperacion) {
+                if (modalErrorMessage) {
+                    modalErrorMessage.textContent =
+                        "Por favor, ingresa el Código de Operación de Yape.";
+                }
+                codigoOperacionYapeInput.focus();
+                return;
+            }
+            if (modalErrorMessage) modalErrorMessage.textContent = "";
+
+            // Ocultar el modal
+            ocultarModal();
+
+            // Armar el payload final
+            const payload = {
+                ...datosFormularioAntesDePago,
+                codigoOperacionYape: codigoOperacion,
+                estadoVerificacion: "PENDIENTE_VERIFICACION",
+            };
+
+            // Mostrar “procesando”
+            if (mensajeRespuesta) {
+                mensajeRespuesta.textContent =
+                    "Procesando registro (esperando verificación)...";
+                mensajeRespuesta.className = "mt-4 text-yellow-400";
+            }
+
+            // Enviar al backend
             try {
                 const response = await fetch("/api/registrar-equipo", {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(data),
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload),
                 });
-
                 const result = await response.json();
-
                 if (response.ok && result.success) {
                     if (mensajeRespuesta) {
                         mensajeRespuesta.textContent =
                             result.message ||
-                            "¡Equipo registrado exitosamente!";
+                            "¡Registro exitoso! Pago en verificación.";
                         mensajeRespuesta.className = "mt-4 text-green-400";
                     }
-                    (formRegistro as HTMLFormElement).reset();
-                    // Limpiar los divs de datos de integrantes
+                    // Limpiar form
+                    formRegistro.reset();
                     document
                         .querySelectorAll('[id^="datosIntegrante"]')
                         .forEach((div) => {
                             if (div instanceof HTMLElement) div.innerHTML = "";
                         });
+                    datosFormularioAntesDePago = null;
+                    codigoOperacionYapeInput.value = "";
                 } else {
                     if (mensajeRespuesta) {
                         mensajeRespuesta.textContent =
-                            result.message ||
-                            "Error en el registro del equipo.";
+                            result.message || "Error al registrar el equipo.";
                         mensajeRespuesta.className = "mt-4 text-red-400";
                     }
                 }
             } catch (error) {
-                console.error(
-                    "Error al enviar el formulario de registro de equipo:",
-                    error,
-                );
+                console.error("Error al enviar datos al servidor:", error);
                 if (mensajeRespuesta) {
                     mensajeRespuesta.textContent =
-                        "Ocurrió un error al conectar con el servidor para registrar el equipo.";
+                        "Ocurrió un error al conectar con el servidor.";
                     mensajeRespuesta.className = "mt-4 text-red-400";
                 }
             }
