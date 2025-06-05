@@ -12,15 +12,22 @@ const links = [
 ---
 
 <script>
-  // Función que actualiza el estado de los span según el hash
   function updateActiveLink() {
-    const hash = window.location.hash;
+    const sections = document.querySelectorAll("section[id]");
     const links = document.querySelectorAll("aside nav a");
+
+    let currentSectionId: any = null;
+
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+      if (rect.top <= window.innerHeight / 2 && rect.bottom >= 100) {
+        currentSectionId = section.id;
+      }
+    });
 
     links.forEach((link) => {
       const span = link.querySelector(".w-animate");
-
-      if (link.getAttribute("href") === hash) {
+      if (link.getAttribute("href") === `#${currentSectionId}`) {
         span?.classList.remove("w-0");
         span?.classList.add("w-full");
       } else {
@@ -30,10 +37,8 @@ const links = [
     });
   }
 
-  // Ejecutar al cargar la página
   window.addEventListener("DOMContentLoaded", updateActiveLink);
-  // Ejecutar cuando el hash cambie (por navegación)
-  window.addEventListener("hashchange", updateActiveLink);
+  window.addEventListener("scroll", updateActiveLink);
 </script>
 
 <aside
