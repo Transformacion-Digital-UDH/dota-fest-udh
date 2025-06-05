@@ -1,10 +1,11 @@
 ---
 import nobgudh from "@assets/videos/dota.mp4";
+import Title from "@/components/Title.astro";
 ---
 
 <section
   id="equipos"
-  class="h-dvh w-full bg-black text-white relative overflow-hidden"
+  class="text-center h-dvh w-full bg-black text-white relative overflow-hidden"
 >
   <video
     src={nobgudh}
@@ -21,5 +22,158 @@ import nobgudh from "@assets/videos/dota.mp4";
     muted
     loop></video>
 
-  <div></div>
+  <div class="relative z-10 flex flex-col h-full">
+    <Title
+      className="text-4xl lg:!text-6xl 2xl:!text-7xl !animate-blurred-fade-in !font-aminute relative top-5 !tracking-[0.2em]"
+      label="Equipos Inscritos"
+    />
+
+    <!-- Contenedor de equipos -->
+    <div class="flex-1 px-4 sm:px-6 lg:px-8 pt-20 pb-8 overflow-hidden">
+      <div class="max-w-6xl mx-auto h-full">
+        <!-- Estado de carga -->
+        <div id="loadingState" class="text-center py-8">
+          <div
+            class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-white"
+          >
+          </div>
+          <p class="mt-2 text-gray-300">Cargando equipos...</p>
+        </div>
+
+        <!-- Mensaje de error -->
+        <div id="errorState" class="hidden text-center py-8">
+          <p class="text-red-400 mb-4">Error al cargar los equipos</p>
+          <button
+            id="retryBtn"
+            class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded text-white"
+          >
+            Reintentar
+          </button>
+        </div>
+
+        <!-- Lista de equipos -->
+        <div id="equiposContainer" class="hidden h-full">
+          <!-- Grid de equipos -->
+          <div
+            id="equiposGrid"
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 overflow-y-auto max-h-[calc(100vh-300px)] custom-scrollbar"
+          >
+          </div>
+
+          <!-- Contador -->
+          <div class="mt-4 text-center">
+            <p id="equiposCount" class="text-gray-300 text-sm"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
+
+<script>
+  // @ts-nocheck
+
+  document.addEventListener("DOMContentLoaded", async () => {
+    const loadingState = document.getElementById("loadingState");
+    const errorState = document.getElementById("errorState");
+    const equiposContainer = document.getElementById("equiposContainer");
+    const equiposGrid = document.getElementById("equiposGrid");
+    const equiposCount = document.getElementById("equiposCount");
+    const retryBtn = document.getElementById("retryBtn");
+
+    let equiposData = [];
+
+    // Función para obtener equipos
+    async function cargarEquipos() {
+      try {
+        mostrarEstado("loading");
+        const response = await fetch("/api/registrar-equipo");
+
+        if (!response.ok) {
+          throw new Error(`Error ${response.status}: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+
+        if (data.success) {
+          equiposData = data.equipos || [];
+          mostrarEquipos();
+        } else {
+          throw new Error(data.message || "Error al obtener equipos");
+        }
+      } catch (error) {
+        console.error("Error cargando equipos:", error);
+        mostrarEstado("error");
+      }
+    }
+
+    // Función para mostrar diferentes estados
+    function mostrarEstado(estado) {
+      loadingState?.classList.toggle("hidden", estado !== "loading");
+      errorState?.classList.toggle("hidden", estado !== "error");
+      equiposContainer?.classList.toggle("hidden", estado !== "equipos");
+    }
+
+    // Función para renderizar equipos - SOLO VERIFICADOS
+    function mostrarEquipos() {
+      if (!equiposGrid || !equiposCount) return;
+
+      // Filtrar SOLO equipos verificados
+      const equiposVerificados = equiposData.filter(
+        (equipo) => equipo.estado_pago === "VERIFICADO",
+      );
+
+      // Renderizar equipos verificados
+      equiposGrid.innerHTML = equiposVerificados
+        .map((equipo) => {
+          const fechaCreacion = new Date(equipo.creado_en).toLocaleDateString(
+            "es-PE",
+            {
+              day: "2-digit",
+              month: "2-digit",
+              year: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+            },
+          );
+
+          return `
+          <div class="equipo-card rounded-lg p-4">
+            <div class="flex justify-between items-start mb-3">
+              <h4 class="font-bold text-lg text-white truncate flex-1">${equipo.nombre_equipo}</h4>
+              <span class="text-xs px-2 py-1 rounded-full border ml-2 estado-verificado">
+                ✓ Verificado
+              </span>
+            </div>
+            
+            <div class="space-y-2 text-sm">
+              <div class="flex items-center gap-2">
+                <span class="text-yellow-400">👑</span>
+                <span class="text-gray-300">Capitán:</span>
+                <span class="text-white">${equipo.nombre_integrante1}</span>
+              </div>
+              
+              <div class="flex items-center gap-2">
+                <span class="text-blue-400">📅</span>
+                <span class="text-gray-300">Registrado:</span>
+                <span class="text-white text-xs">${fechaCreacion}</span>
+              </div>
+            </div>
+          </div>
+        `;
+        })
+        .join("");
+
+      mostrarEstado("equipos");
+    }
+
+    // Event listeners
+    retryBtn?.addEventListener("click", cargarEquipos);
+
+    // Actualización automática cada 30 segundos
+    setInterval(cargarEquipos, 30000);
+
+    // Cargar equipos al inicio
+    cargarEquipos();
+  });
+</script>
