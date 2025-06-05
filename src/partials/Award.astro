@@ -54,7 +54,7 @@ import rewardTreasure from "@assets/imgs/rewards_treasures.png";
 
 <section
   id="premio"
-  class="text-center h-[110%] w-full bg-black text-white relative overflow-hidden"
+  class="text-center h-[90%] sm:h-[110%] w-full bg-black text-white relative overflow-hidden"
 >
   <img
     src={bgBounty.src}
@@ -68,6 +68,7 @@ import rewardTreasure from "@assets/imgs/rewards_treasures.png";
     -webkit-mask-repeat: no-repeat;
     mask-repeat: no-repeat;
   "
+  loading="lazy"
   />
 
   <Title
@@ -81,11 +82,13 @@ import rewardTreasure from "@assets/imgs/rewards_treasures.png";
       src={rewardCoin.src}
       alt=""
       class="animate-float animate-iteration-count-infinite animate-duration-[2200ms] absolute bottom-[50%] right-[42%] w-16 lg:w-24 2xl:w-32 z-10"
+      loading="lazy"
     />
     <img
       src={rewardTreasure.src}
       alt=""
       class="animate-float animate-iteration-count-infinite animate-duration-[1800ms] absolute bottom-[69%] right-[58%] w-24 lg:w-32 2xl:w-40 z-10"
+      loading="lazy"
     />
     <img
       src={coinBooster.src}
@@ -96,12 +99,14 @@ import rewardTreasure from "@assets/imgs/rewards_treasures.png";
       src={bountyRun.src}
       alt=""
       class="animate-float animate-iteration-count-infinite animate-duration-[1700ms] absolute bottom-[50%] right-[56%] w-40 lg:w-60 2xl:w-72"
+      loading="lazy"
     />
     <img
       src={comboOgre.src}
       alt=""
       class="w-[32rem] lg:w-[40rem] 2xl:w-[52rem]"
       style="mask-image: linear-gradient(to bottom, black 90%, transparent);"
+      loading="lazy"
     />
   </div>
   <div class="sm:-mt-32">
