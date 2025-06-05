@@ -308,7 +308,7 @@ import yapeQrImage from "@assets/imgs/yape_qr.jpeg";
         />
         <p class="mb-2 text-white">
             Luego ingresa el <strong class="text-yellow-400"
-                >Código de Operación</strong
+                >Nro. de operación</strong
             >:
         </p>
         <input
@@ -376,7 +376,7 @@ import yapeQrImage from "@assets/imgs/yape_qr.jpeg";
         font-weight: bold;
         text-transform: uppercase;
         letter-spacing: 0.2em;
-        padding: 12px 24px;
+        padding: 6px 12px;
         cursor: pointer;
         transition:
             filter 0.1s linear,
@@ -384,6 +384,13 @@ import yapeQrImage from "@assets/imgs/yape_qr.jpeg";
         text-shadow: 0px 0px 6px rgba(0, 0, 0, 1);
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
     }
+
+    @media (min-width: 640px) {
+        .verificar-button-dota-style {
+            padding: 12px 24px; /* Padding original para pantallas grandes */
+        }
+    }
+
     .verificar-button-dota-style:hover {
         filter: brightness(1.2);
     }
