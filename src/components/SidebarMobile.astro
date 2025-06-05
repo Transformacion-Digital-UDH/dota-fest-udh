@@ -1,0 +1,65 @@
+---
+import IconMenu from "./icons/IconMenu.astro";
+import IconX from "./icons/IconX.astro";
+import NavItem from "./NavItem.astro";
+
+const links = [
+  { label: "inicio", to: "#inicio" },
+  { label: "premio", to: "#premio" },
+  { label: "equipos", to: "#equipos" },
+  // { label: "agenda", to: "#agenda" },
+  { label: "reglas", to: "#reglas" },
+  { label: "¿E-sports LTD?", to: "/acerca" },
+];
+---
+
+<script>
+  const menu_button = document.getElementById("menu-button");
+  const menu_screen = document.getElementById("menu-screen");
+  const iconmenu = document.getElementById("iconmenu");
+  const iconx = document.getElementById("iconx");
+  const links = document.querySelectorAll("div#menu-screen nav a");
+
+  menu_button?.addEventListener("click", () => {
+    const isOpen = menu_screen?.classList.contains("hidden");
+    if (!isOpen) {
+      menu_screen?.classList.add("hidden");
+      iconx?.classList.add("hidden");
+      iconmenu?.classList.add("animate-flip-in-y");
+      iconmenu?.classList.remove("hidden");
+    } else {
+      menu_screen?.classList.remove("hidden");
+      iconx?.classList.add("animate-rotate-in");
+      iconx?.classList.remove("hidden");
+      iconmenu?.classList.add("hidden");
+    }
+  });
+
+  links.forEach((link) => {
+    link.addEventListener("click", () => {
+      menu_screen?.classList.add("hidden");
+      iconx?.classList.add("hidden");
+      iconmenu?.classList.add("animate-flip-in-y");
+      iconmenu?.classList.remove("hidden");
+    });
+  });
+</script>
+
+<button
+  id="menu-button"
+  class="fixed top-4 left-4 bg-white/5 p-2 rounded-sm animate-move-from-left sm:hidden block z-50 backdrop-blur-3xl"
+>
+  <IconMenu id="iconmenu" class="size-8" />
+  <IconX id="iconx" class="size-8 hidden" />
+</button>
+
+<div
+  id="menu-screen"
+  class="hidden fixed top-0 h-screen w-full backdrop-blur-lg bg-black/80 p-10 z-40 animate-fade-in-down"
+>
+  <nav
+    class="flex flex-col gap-14 2xl:gap-20 text-center text-xl 2xl:text-2xl tracking-widest"
+  >
+    {links.map((link) => <NavItem to={link.to} label={link.label} />)}
+  </nav>
+</div>
