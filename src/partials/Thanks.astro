@@ -1,22 +1,113 @@
 ---
 import maiden from "@assets/imgs/maiden.jpg";
+import ltd from "@assets/imgs/ltd_sponsor.png";
+import paisi from "@assets/imgs/paisi_sponsor.webp";
+import warmi from "@assets/imgs/warmi_sponsor.png";
+// import udh from "@assets/imgs/udh_sponsor.webp";
+import IconFacebook from "@/components/icons/IconFacebook.astro";
+import IconInstagram from "@/components/icons/IconInstagram.astro";
+import IconGlobe from "@/components/icons/IconGlobe.astro";
+import IconLinkedin from "@/components/icons/IconLinkedin.astro";
+import IconGithub from "@/components/icons/IconGithub.astro";
 ---
 
 <div
   id="thanks"
-  class="text-center h-dvh w-full bg-black text-white relative overflow-hidden"
+  class="text-center h-full w-full bg-black text-white relative overflow-hidden z-30"
 >
   <img
     src={maiden.src}
-    class="absolute top-0 left-0 w-full h-full object-cover opacity-85 z-0 pointer-events-none select-none"
+    class="absolute top-0 left-0 w-full h-full object-cover opacity-100 z-0 pointer-events-none select-none"
     style="mask-image: linear-gradient(to top, black 70%, transparent);"
-
-  loading="lazy"
+    loading="lazy"
   />
 
-  <div class="relative flex flex-col content-end justify-start items-start  h-full bg-white-5">
-    <div class="uppercase text-4xl sm:text-6xl font-agency tracking-widest pl-0 sm:pl-10 pt-10 lg:pt-10 2xl::pt-20">
-      <h3>! gracias por participar ¡</h3>
+  <div
+    class="relative uppercase text-3xl sm:text-6xl font-agency tracking-widest mt-2"
+  >
+    <h3>!gracias por participar¡</h3>
+  </div>
+
+  <div
+    class="relative flex sm:flex-row flex-col content-center justify-center items-center h-full bg-white-5 px-5 sm:px-20 gap-20"
+  >
+    <div class="sm:w-1/2 sm:h-1/2 text-start flex justify-center sm:justify-end items-center sm:items-start content-center sm:content-start flex-col space-y-5">
+      <h3 class="text-2xl sm:text-3xl font-semibold uppercase font-aminute tracking-widest underline">
+        creadores 
+      </h3>
+      <!-- creator 1 -->
+      <div class="text-3xl flex flex-col space-y-4 gap-2 mb-10">
+        <p class="font-aminute text-2xl tracking-widest">Kevin Arnold Flores Pacheco</p>
+        <!-- Icons -->
+        <div class="flex items-center justify-center sm:justify-start content-center gap-3">
+          <a class="network" href="https://kearnold.dev/" target="_blank">
+            <IconGlobe class="size-10 text-clip text-transparent bg-gradient-to-br to-sky-300 via-transparent hover:from-sky-200 duration-600 from-transparent hover:brightness-110 hover:opacity-100 opacity-70 transition-all rounded-lg p-1" />
+          </a>
+          <a class="network" href="https://github.com/kev1n01" target="_blank">
+            <IconGithub class="size-10 text-clip text-transparent bg-gradient-to-br to-sky-300 via-transparent hover:from-sky-200 duration-600 from-transparent hover:brightness-110 hover:opacity-100 opacity-70 transition-all rounded-lg p-1" />
+          </a>
+          <a class="network" href="https://www.instagram.com/kkevv1/" target="_blank">
+            <IconInstagram class="size-10 text-clip text-transparent bg-gradient-to-br to-sky-300 via-transparent hover:from-sky-200 duration-600 from-transparent hover:brightness-110 hover:opacity-100 opacity-70 transition-all rounded-lg p-1" />
+          </a>
+          <a class="network" href="https://www.linkedin.com/in/kearnold/" target="_blank">
+            <IconLinkedin class="size-10 text-clip text-transparent bg-gradient-to-br to-sky-300 via-transparent hover:from-sky-200 duration-600 from-transparent hover:brightness-110 hover:opacity-100 opacity-70 transition-all rounded-lg p-1" />
+          </a>
+        </div>
+      </div>
+      <!-- creator 2 -->
+      <div class="text-3xl flex flex-col space-y-4">
+        <p class="font-aminute text-2xl tracking-widest">Arvic Kenedi Jara Herrera</p>
+        <!-- Icons -->
+        <div class="flex items-center justify-center sm:justify-start content-center gap-3">
+          <a class="network" href="https://github.com/ArvickJara" target="_blank">
+            <IconGithub class="size-10 text-clip text-transparent bg-gradient-to-br to-sky-300 via-transparent hover:from-sky-200 duration-600 from-transparent hover:brightness-110 hover:opacity-100 opacity-70 transition-all rounded-lg p-1" />
+          </a>
+          <a class="network" href="https://www.instagram.com/arvic_kenedi/" target="_blank">
+            <IconInstagram class="size-10 text-clip text-transparent bg-gradient-to-br to-sky-300 via-transparent hover:from-sky-200 duration-600 from-transparent hover:brightness-110 hover:opacity-100 opacity-70 transition-all rounded-lg p-1" />
+          </a>
+          <a class="network" href="https://www.linkedin.com/in/arvic-kenedi-jara-herrera-a44877319/" target="_blank">
+            <IconLinkedin class="size-10 text-clip text-transparent bg-gradient-to-br to-sky-300 via-transparent hover:from-sky-200 duration-600 from-transparent hover:brightness-110 hover:opacity-100 opacity-70 transition-all rounded-lg p-1" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="w-full sm:w-1/2 sm:h-1/2 flex justify-center sm:justify-end items-center sm:items-end content-end flex-col text-end space-y-8"
+    >
+      <h3
+        class="text-2xl sm:text-3xl font-semibold uppercase text-center font-aminute tracking-widest underline"
+      >
+        sponsors
+      </h3>
+      <a href="https://ltd.sistemasudh.com/" target="_blank">
+        <img
+          src={ltd.src}
+          alt="LTD logo sponsor"
+          class="w-52 grayscale opacity-60 hover:opacity-100 transition-opacity duration-600 hover:grayscale-0"
+        />
+      </a>
+      <a href="https://www.facebook.com/UDHPAISI" target="_blank">
+        <img
+          src={paisi.src}
+          alt="PAISI logo sponsor"
+          class="w-52 grayscale opacity-60 hover:opacity-100 transition-opacity duration-600 hover:grayscale-0"
+        />
+      </a>
+      <a href="https://warmidev.tech/" target="_blank">
+        <img
+          src={warmi.src}
+          alt="Warmi logo sponsor"
+          class="w-52 grayscale opacity-60 hover:opacity-100 transition-opacity duration-600 hover:grayscale-0"
+        />
+      </a>
+      <!-- <a href="https://udh.sistemasudh.com/" target="_blank">
+        <img
+          src={udh.src}
+          alt="UDH logo sponsor"
+          class="w-52 grayscale opacity-60 hover:opacity-100 transition-opacity duration-600 hover:grayscale-0"
+        />
+      </a> -->
     </div>
   </div>
 </div>

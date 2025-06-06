@@ -13,7 +13,7 @@ import rewardTreasure from "@assets/imgs/rewards_treasures.png";
   const counterEl2do = document.getElementById("counter2do");
   let started = false;
 
-  function animateCount(el: any, to = 100, duration = 1500) {
+  function animateCount(el: any, to = 100, duration = 2000) {
     let start = 0;
     const stepTime = Math.abs(Math.floor(duration / to));
     const startTime = performance.now();
@@ -39,7 +39,7 @@ import rewardTreasure from "@assets/imgs/rewards_treasures.png";
         if (entry.isIntersecting && !started) {
           started = true;
           animateCount(counterEl1er, 500, 2000);
-          animateCount(counterEl2do, 100, 1000);
+          animateCount(counterEl2do, 100, 1700);
         }
       });
     },
@@ -111,7 +111,7 @@ import rewardTreasure from "@assets/imgs/rewards_treasures.png";
   </div>
   <div class="sm:-mt-32">
     <p
-      class="font-bold text-2xl relative bg-gradient-to-t from-yellow-100 to-red-200 bg-clip-text text-transparent drop-shadow-2xl drop-shadow-[#000000] uppercase"
+      class="font-bold text-2xl relative bg-gradient-to-t from-yellow-100 to-red-200 bg-clip-text text-transparent drop-shadow-2xl drop-shadow-[#000000] uppercase font-aminute tracking-widest"
     >
       Primer puesto
     </p>
@@ -123,7 +123,7 @@ import rewardTreasure from "@assets/imgs/rewards_treasures.png";
       id="counter1er"
       class="bg-gradient-to-t from-yellow-400 to-red-200 bg-clip-text text-transparent
        drop-shadow-2xl drop-shadow-[#000000] font-agency font-normal relative
-       text-7xl lg:text-8xl 2xl:text-9xl"
+       text-7xl lg:text-8xl 2xl:text-9xl tabular-nums"
     >
       0
     </span>
@@ -132,11 +132,11 @@ import rewardTreasure from "@assets/imgs/rewards_treasures.png";
     <hr class="w-1/2" />
   </div>
   <div class="mt-4">
-    <p class="font-semibold text-2xl relative">Segundo puesto</p>
+    <p class="font-semibold text-2xl relative font-aminute tracking-widest">Segundo puesto</p>
     <span class="font-semibold text-xl sm:text-2xl relative">S/. </span>
     <span
       id="counter2do"
-      class="text-white font-agency font-normal mt-0 relative text-4xl sm:text-7xl"
+      class="text-white font-agency font-normal mt-0 relative text-4xl sm:text-7xl tabular-nums"
     >
       0
     </span>

@@ -29,6 +29,7 @@ html, body{
 
 a,
 button,
+a[target="_blank"],
 a#back,
 a#register,
 button#change-btn {
