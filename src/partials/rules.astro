@@ -1,0 +1,74 @@
+---
+import RefDanger from "@/components/buttons/RefDanger.astro";
+import Title from "@/components/Title.astro";
+import escudoTI from "@assets/imgs/reglas.png";
+---
+
+<section
+    id="acerca"
+    class="relative min-h-screen w-full bg-black text-white text-center py-20 bg-gradient-to-b from-transparent to-slate-800 overflow-hidden"
+>
+    <!-- Fondo del escudo con estilo visual tenue -->
+    <img
+        src={escudoTI.src}
+        alt="Escudo TI"
+        class="absolute top-0 left-0 w-full h-full object-contain opacity-10 z-0 pointer-events-none select-none"
+    />
+
+    <!-- Contenido encima -->
+    <div class="relative z-10">
+        <div
+            class="h-full w-full text-start px-10 lg:px-40 2xl:px-52 text-xl mt-0 sm:mt-10 space-y-6 animate-fade-in-down animate-delay-300"
+        >
+            <div
+                class="flex-col sm:flex-row flex justify-center items-center sm:justify-between gap-2"
+            >
+                <RefDanger
+                    idbtn="back"
+                    to="/"
+                    className="!rounded-sm !px-4 !py-2 !text-center font-aminute"
+                    label="Volver"
+                />
+                <Title
+                    className="!text-3xl sm:!text-5xl !animate-blurred-fade-in"
+                    label="REGLAMENTO DEL TORNEO"
+                />
+                <div class="hidden sm:block w-[100px]"></div>
+            </div>
+
+            <div class="text-left space-y-6 text-lg leading-relaxed">
+                <p>
+                    <strong>Condiciones Generales:</strong>
+                    <br />* Los participantes deben ser estudiantes matriculados
+                    en el semestre 2025-I.<br />
+                    * Los equipos deberán estar puntualmente presentes en cada turno
+                    asignado.<br />
+                    * No se permite el uso de hacks, scripts, ni conductas antideportivas.
+                    <br />
+                </p>
+
+                <p>
+                    <strong>Lag y desconexiones:</strong>
+                    <br />* Si un jugador se desconecta en los primeros 5
+                    minutos y se reporta vía Discord, podrá reanudarse la
+                    partida.<br />
+                    * La organización evaluará los casos de desconexión injustificada.<br
+                    />
+                    * Pausas solo por desconexión, con límite de tiempo por equipo.
+                </p>
+
+                <p>
+                    <strong>Sanciones:</strong><br />
+                    * Cualquier falta de respeto, uso de trampas o incumplimiento
+                    de las reglas podrá conllevar a la descalificación del equipo.<br
+                    />
+                    * Las decisiones de la organización serán inapelables y de cumplimiento
+                    obligatorio.<br />
+                    * El Comité Organizador se reserva el derecho de modificar el
+                    reglamento si las circunstancias lo requieren.<br />
+                    * Las decisiones del comité organizador son inapelables.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
