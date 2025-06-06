@@ -1,15 +1,53 @@
 ---
 import "../styles/global.css";
+import { ClientRouter } from "astro:transitions";
 ---
 
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>E-Sports LTD</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta
+      name="description"
+      content="ESPORTS LTD es una iniciativa del Laboratorio de Transformación Digital de la Universidad de Huánuco que promueve la digitalización mediante videojuegos como Dota 2, CS:GO y más."
+    />
+    <meta
+      name="keywords"
+      content="esports, esports ltd, transformación digital, universidad de huánuco, gaming, dota 2, csgo, educación digital"
+    />
+    <link rel="canonical" href="https://ltddota.sistemasudh.com" />
+
+    <meta
+      property="og:title"
+      content="ESPORTS LTD – Gaming y Educación Digital"
+    />
+    <meta
+      property="og:description"
+      content="Conoce cómo la Universidad de Huánuco promueve la transformación digital a través de e-sports como Dota 2 y CS:GO."
+    />
+    <meta
+      property="og:image"
+      content="https://ltddota.sistemasudh.com/screenhome.png"
+    />
+    <meta property="og:url" content="https://ltddota.sistemasudh.com" />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="ESPORTS LTD – Gaming y Educación Digital"
+    />
+    <meta
+      name="twitter:description"
+      content="La Universidad de Huánuco impulsa la digitalización a través del gaming competitivo."
+    />
+    <meta name="twitter:image" content="https://ltddota.sistemasudh.com/screenhome.png" />
+
+    <meta name="generator" content={Astro.generator} />
+    <title>E-SPORTS LTD – Gaming y Educación Digital</title>
+    <ClientRouter />
 	</head>
 	<body>
 		<slot />
