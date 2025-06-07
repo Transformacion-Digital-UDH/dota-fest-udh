@@ -1,4 +1,10 @@
-<a class="dota-button-primary">Aceptar</a>
+---
+const { label, idbtn } = Astro.props;
+---
+
+<button id={idbtn} class="dota-button-primary w-full tracking-widest" {...Astro.props}>
+  {label}
+</button>
 
 <style>
   .dota-button-primary {

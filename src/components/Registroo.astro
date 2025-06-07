@@ -1,18 +1,24 @@
 ---
 import videoBlueSrcFromComponent from "@assets/videos/file3.mp4";
-const videoRedSrcFromComponent =
-    "https://videos.pexels.com/video-files/2715412/2715412-uhd_2560_1440_30fps.mp4";
+// const videoRedSrcFromComponent =
+//     "https://videos.pexels.com/video-files/2715412/2715412-uhd_2560_1440_30fps.mp4";
+import videoRedSrcFromComponent from "@assets/videos/file4.mp4";
 import yapeQrImage from "@assets/imgs/yape_qr.jpeg";
+import ButtonDefault from "./buttons/ButtonDefault.astro";
+import ButtonDanger from "./buttons/ButtonDanger.astro";
+import RefDanger from "./buttons/RefDanger.astro";
+import Title from "./Title.astro";
 ---
 
 <div
     class="h-dvh bg-black text-white flex flex-col items-center justify-center relative overflow-hidden font-aminute"
+    transition:animate="fade"
 >
     <!-- Videos de fondo -->
     <video
         id="registro-video-red"
         src={videoRedSrcFromComponent}
-        class="hidden absolute top-0 left-0 w-full h-full object-cover z-0 opacity-75"
+        class="hidden absolute top-0 left-0 w-full h-full object-cover z-0 opacity-75 animate-fade-in"
         autoplay
         muted
         loop
@@ -20,7 +26,7 @@ import yapeQrImage from "@assets/imgs/yape_qr.jpeg";
     <video
         id="registro-video-blue"
         src={videoBlueSrcFromComponent}
-        class="hidden absolute top-0 left-0 w-full h-full object-cover z-0 opacity-75"
+        class="hidden absolute top-0 left-0 w-full h-full object-cover z-0 opacity-75 animate-fade-in"
         autoplay
         muted
         loop
@@ -30,13 +36,18 @@ import yapeQrImage from "@assets/imgs/yape_qr.jpeg";
     <div
         class="relative z-10 flex flex-col items-center text-center p-4 w-full max-w-2xl max-h-[90vh]"
     >
-        <h1 class="text-4xl font-bold mb-4 md:mb-8 font-alifira">
-            Registro de Equipos
-        </h1>
+        <div class="flex-col sm:flex-row flex justify-center items-center sm:justify-between gap-2 mb-10 w-full">
+          <RefDanger idbtn="back" to="/" className="!rounded-sm !px-4 !py-2 !text-center font-aminute animate-blurred-fade-in" label="Volver" />
+          <Title
+            className="!text-3xl sm:!text-4xl !animate-blurred-fade-in"
+            label="registro de equipo"
+          />
+          <div class="hidden sm:block"></div>
+        </div>
 
         <form
             id="formRegistroEquipo"
-            class="w-full max-w-2xl bg-white/10 p-6 md:p-8 rounded-lg shadow-xl flex flex-col max-h-[calc(80vh-55px)]"
+            class="w-full max-w-2xl bg-black/50 p-6 md:p-8 rounded-lg shadow-xl flex flex-col max-h-[calc(80vh-55px)] backdrop-blur-md animate-zoom-in"
         >
             <div
                 class="flex-grow overflow-y-auto pr-2 space-y-6 custom-scrollbar-container"
@@ -53,7 +64,7 @@ import yapeQrImage from "@assets/imgs/yape_qr.jpeg";
                         type="text"
                         id="nombreEquipo"
                         name="nombreEquipo"
-                        class="w-full p-3 ml-1 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
+                        class="w-full p-3 ml-1 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none tracking-widest"
                         required
                     />
                 </div>
@@ -77,8 +88,12 @@ import yapeQrImage from "@assets/imgs/yape_qr.jpeg";
                             type="text"
                             id="codigoIntegrante1"
                             name="codigoIntegrante1"
-                            class="integrante-codigo w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
+                            class="integrante-codigo w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none tracking-widest"
                             required
+                            placeholder="Ej: 2018000000"
+                            maxlength="10"
+                            minlength="10"
+                            title="El código debe tener 10 dígitos numéricos"
                             data-integrante-index="1"
                         />
                         <button
@@ -119,7 +134,12 @@ import yapeQrImage from "@assets/imgs/yape_qr.jpeg";
                             type="text"
                             id="codigoIntegrante2"
                             name="codigoIntegrante2"
-                            class="integrante-codigo w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
+                            class="integrante-codigo w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none tracking-widest"
+                            required
+                            placeholder="Ej: 2018000000"
+                            maxlength="10"
+                            minlength="10"
+                            title="El código debe tener 10 dígitos numéricos"
                             data-integrante-index="2"
                         />
                         <button
@@ -160,7 +180,12 @@ import yapeQrImage from "@assets/imgs/yape_qr.jpeg";
                             type="text"
                             id="codigoIntegrante3"
                             name="codigoIntegrante3"
-                            class="integrante-codigo w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
+                            class="integrante-codigo w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none tracking-widest"
+                            required
+                            placeholder="Ej: 2018000000"
+                            maxlength="10"
+                            minlength="10"
+                            title="El código debe tener 10 dígitos numéricos"
                             data-integrante-index="3"
                         />
                         <button
@@ -201,7 +226,12 @@ import yapeQrImage from "@assets/imgs/yape_qr.jpeg";
                             type="text"
                             id="codigoIntegrante4"
                             name="codigoIntegrante4"
-                            class="integrante-codigo w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
+                            class="integrante-codigo w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none tracking-widest"
+                            required
+                            placeholder="Ej: 2018000000"
+                            maxlength="10"
+                            minlength="10"
+                            title="El código debe tener 10 dígitos numéricos"
                             data-integrante-index="4"
                         />
                         <button
@@ -242,7 +272,12 @@ import yapeQrImage from "@assets/imgs/yape_qr.jpeg";
                             type="text"
                             id="codigoIntegrante5"
                             name="codigoIntegrante5"
-                            class="integrante-codigo w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none"
+                            class="integrante-codigo w-full p-2 rounded bg-white/20 text-white placeholder-gray-300 focus:ring-2 focus:ring-red-500 outline-none tracking-widest"
+                            required
+                            placeholder="Ej: 2018000000"
+                            maxlength="10"
+                            minlength="10"
+                            title="El código debe tener 10 dígitos numéricos"
                             data-integrante-index="5"
                         />
                         <button
@@ -272,15 +307,16 @@ import yapeQrImage from "@assets/imgs/yape_qr.jpeg";
             </div>
 
             <div class="mt-auto pt-8">
-                <button
+                <!-- <button
                     type="submit"
                     class="w-full bg-red-600 hover:bg-red-800 text-white font-bold py-3 px-6 rounded-lg text-xl transition-colors duration-300"
                 >
                     Registrar Equipo
-                </button>
+                </button> -->
+                <ButtonDanger type="submit" label="Registrar Equipo" />
             </div>
         </form>
-        <div id="mensajeRespuestaRegistro" class="mt-4 text-sm md:text-base">
+        <div id="mensajeRespuestaRegistro" class="mt-4 text-sm md:text-base font-semibold">
         </div>
     </div>
 </div>
@@ -327,17 +363,20 @@ import yapeQrImage from "@assets/imgs/yape_qr.jpeg";
             >
                 Confirmar Pago
             </button>
-            <button
+            <!-- <button
                 type="button"
                 id="cerrarModalBtn"
                 class="w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300"
             >
                 Cancelar
-            </button>
+            </button> -->
+            
+            <ButtonDefault idbtn="cerrarModalBtn" label="Cancelar"/>
+
         </div>
         <p
             id="modalErrorMessage"
-            class="text-red-400 mt-3 text-sm min-h-[20px]"
+            class="text-red-400 mt-3 text-sm sm:text-base min-h-[20px] font-semibold"
         >
         </p>
     </div>
@@ -402,11 +441,9 @@ import yapeQrImage from "@assets/imgs/yape_qr.jpeg";
 </style>
 
 <script>
-    // @ts-nocheck
-
-    document.addEventListener("DOMContentLoaded", () => {
-        // 1) Seleccionar ambos videos POR SU ID EXACTO
-        const videoRedRegistro = document.querySelector("#registro-video-red");
+    function initializeRegistro() {
+ // 1) Seleccionar ambos videos POR SU ID EXACTO
+ const videoRedRegistro = document.querySelector("#registro-video-red");
         const videoBlueRegistro = document.querySelector(
             "#registro-video-blue",
         );
@@ -681,5 +718,8 @@ import yapeQrImage from "@assets/imgs/yape_qr.jpeg";
                 }
             }
         });
-    });
+    }
+    document.addEventListener("DOMContentLoaded", initializeRegistro);
+
+    document.addEventListener("astro:page-load", initializeRegistro);
 </script>

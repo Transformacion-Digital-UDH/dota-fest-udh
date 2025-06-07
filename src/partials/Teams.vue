@@ -16,7 +16,7 @@ const cargarEquipos = async () => {
     const data = await res.json();
 
     if (!res.ok || !data.success) throw new Error(data.message || "Error");
-    console.log("Equipos cargados:", data.equipos);
+    // console.log("Equipos cargados:", data.equipos);
 
     equipos.value = data.equipos || [];
   } catch (err) {
