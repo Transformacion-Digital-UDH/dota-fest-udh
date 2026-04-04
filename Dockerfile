@@ -35,4 +35,4 @@ ENV HOST=0.0.0.0
 ENV PORT=3001
 
 # Comando para ejecutar astro en modo SSR (Standalone usa este entrypoint)
-CMD ["node", "./dist/server/entry.mjs"]
+CMD ["node", "./dist/server/entry.mjs", "--host"]

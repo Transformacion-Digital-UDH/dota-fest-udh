@@ -13,8 +13,8 @@ export default defineConfig({
     vue(),
   ], 
   server: {
-    host: true,
-    port: 3011
+    host: '0.0.0.0',
+    port: 3001
   },
   adapter: node({mode: 'standalone'}),
   output: 'server'
